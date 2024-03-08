@@ -1,9 +1,9 @@
-<div class="card-body p-0">
+<div class="card-body p-0 d-flex flex-column">
   <!-- begin::Header -->
   <div class="px-9 pt-7 card-rounded h-275px w-100" [ngClass]="'bg-' + color">
     <!-- begin::Heading -->
     <div class="d-flex flex-stack">
-      <h3 class="m-0 text-white fw-bolder fs-3">Sales Summary</h3>
+      <h3 class="m-0 text-white fw-bolder fs-3">Analytics</h3>
       <div class="ms-1">
         <!-- begin::Menu -->
         <button
@@ -27,12 +27,14 @@
     <!-- end::Heading -->
     <!-- begin::Balance -->
     <div class="d-flex text-center flex-column text-white pt-8">
-      <span class="fw-bold fs-7">You Balance</span>
-      <span class="fw-bolder fs-2x pt-1">$37,562.00</span>
+      <span class="fw-bolder fs-2x pt-1">999</span>
+      <span class="fw-bold fs-7">Total Calculations Performed</span>
     </div>
     <!-- end::Balance -->
   </div>
   <!-- end::Header -->
+
+  
   <!-- begin::Items -->
   <div
     class="
@@ -43,26 +45,29 @@
       px-6
       py-9
       position-relative
+      flex-column
+      flex-grow-1
+      d-flex
       z-index-1
       bg-body
     "
     [style.margin-top]="'-100px'"
   >
     <!-- begin::Item -->
-    <div class="d-flex align-items-center mb-6">
+    <div class="d-flex align-items-center flex-grow-1 b-6">
       <!-- begin::Symbol -->
-      <div class="symbol symbol-45px w-40px me-5">
+      <!-- <div class="symbol symbol-45px w-40px me-5">
         <span class="symbol-label bg-lighten">
           <app-keenicon name="document" class="fs-1"></app-keenicon>
         </span>
-      </div>
+      </div> -->
       <!-- end::Symbol -->
       <!-- begin::Description -->
       <div class="d-flex align-items-center flex-wrap w-100">
         <!-- begin::Title -->
         <div class="mb-1 pe-3 flex-grow-1">
           <a href="#" class="fs-5 text-gray-800 text-hover-primary fw-bolder">
-            Sales
+            CoC
           </a>
           <div class="text-gray-500 fw-bold fs-7">100 Regions</div>
         </div>
@@ -78,20 +83,20 @@
     </div>
     <!-- end::Item -->
     <!-- begin::Item -->
-    <div class="d-flex align-items-center mb-6">
+    <div class="d-flex align-items-center flex-grow-1 mb-6">
       <!-- begin::Symbol -->
-      <div class="symbol symbol-45px w-40px me-5">
+      <!-- <div class="symbol symbol-45px w-40px me-5">
         <span class="symbol-label bg-lighten">
           <app-keenicon name="category" class="fs-1"></app-keenicon>
         </span>
-      </div>
+      </div> -->
       <!-- end::Symbol -->
       <!-- begin::Description -->
       <div class="d-flex align-items-center flex-wrap w-100">
         <!-- begin::Title -->
         <div class="mb-1 pe-3 flex-grow-1">
           <a href="#" class="fs-5 text-gray-800 text-hover-primary fw-bolder">
-            Revenue
+            Cash Flow
           </a>
           <div class="text-gray-500 fw-bold fs-7">Quarter 2/3</div>
         </div>
@@ -107,20 +112,20 @@
     </div>
     <!-- end::Item -->
     <!-- begin::Item -->
-    <div class="d-flex align-items-center mb-6">
+    <div class="d-flex align-items-center flex-grow-1 mb-6">
       <!-- begin::Symbol -->
-      <div class="symbol symbol-45px w-40px me-5">
+      <!-- <div class="symbol symbol-45px w-40px me-5">
         <span class="symbol-label bg-lighten">
-          <app-keenicon name="elc005.svg" class="fs-1"></app-keenicon>
+          <app-keenicon name="money" class="fs-1"></app-keenicon>
         </span>
-      </div>
+      </div> -->
       <!-- end::Symbol -->
       <!-- begin::Description -->
       <div class="d-flex align-items-center flex-wrap w-100">
         <!-- begin::Title -->
         <div class="mb-1 pe-3 flex-grow-1">
           <a href="#" class="fs-5 text-gray-800 text-hover-primary fw-bolder">
-            Growth
+            Cap Rate
           </a>
           <div class="text-gray-500 fw-bold fs-7">80% Rate</div>
         </div>
@@ -136,20 +141,20 @@
     </div>
     <!-- end::Item -->
     <!-- begin::Item -->
-    <div class="d-flex align-items-center">
+    <div class="d-flex align-items-center flex-grow-1">
       <!-- begin::Symbol -->
-      <div class="symbol symbol-45px w-40px me-5">
+      <!-- <div class="symbol symbol-45px w-40px me-5">
         <span class="symbol-label bg-lighten">
           <app-keenicon name="document" class="fs-1"></app-keenicon>
         </span>
-      </div>
+      </div> -->
       <!-- end::Symbol -->
       <!-- begin::Description -->
       <div class="d-flex align-items-center flex-wrap w-100">
         <!-- begin::Title -->
         <div class="mb-1 pe-3 flex-grow-1">
           <a href="#" class="fs-5 text-gray-800 text-hover-primary fw-bolder">
-            Dispute
+            Cash Needed
           </a>
           <div class="text-gray-500 fw-bold fs-7">3090 Refunds</div>
         </div>

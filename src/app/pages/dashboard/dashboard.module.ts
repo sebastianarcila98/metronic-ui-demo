@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { ModalsModule, WidgetsModule } from '../../_metronic/partials';
+import { WizardsModule } from 'src/app/modules/wizards/wizards.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -16,6 +18,7 @@ import { ModalsModule, WidgetsModule } from '../../_metronic/partials';
     ]),
     WidgetsModule,
     ModalsModule,
+    ReactiveFormsModule,
   ],
 })
 export class DashboardModule {}

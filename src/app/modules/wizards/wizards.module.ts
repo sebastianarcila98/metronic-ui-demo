@@ -31,5 +31,6 @@ import { SharedModule } from "../../_metronic/shared/shared.module";
     NgbTooltipModule,
     SharedModule
   ],
+  exports: [HorizontalComponent]
 })
 export class WizardsModule {}
