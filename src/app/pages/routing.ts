@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { InvestmentCriteriaComponent } from './custom/investment-criteria/investment-criteria.component';
 
 const Routing: Routes = [
   {
@@ -46,6 +47,12 @@ const Routing: Routes = [
   {
     path: 'apps/permissions',
     loadChildren: () => import('./permission/permission.module').then((m) => m.PermissionModule),
+  },
+  {
+    path: 'investment-criteria',
+    component: InvestmentCriteriaComponent,
+    data: { layout: 'light-sidebar' },
+
   },
   {
     path: '',

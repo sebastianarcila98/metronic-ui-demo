@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard.component';
 import { ModalsModule, WidgetsModule } from '../../_metronic/partials';
 import { WizardsModule } from 'src/app/modules/wizards/wizards.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CustomModule } from '../custom/custom.module';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -19,6 +20,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     WidgetsModule,
     ModalsModule,
     ReactiveFormsModule,
+    CustomModule
   ],
 })
 export class DashboardModule {}
