@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
 import { InvestmentCriteriaComponent } from './custom/investment-criteria/investment-criteria.component';
+import { PropertyListComponent } from './custom/property-list/property-list.component';
+import { SavedPropertyListComponent } from './custom/saved-property-list/saved-property-list.component';
 
 const Routing: Routes = [
   {
@@ -52,7 +54,16 @@ const Routing: Routes = [
     path: 'investment-criteria',
     component: InvestmentCriteriaComponent,
     data: { layout: 'light-sidebar' },
-
+  },
+  {
+    path: 'properties/prospects',
+    component: PropertyListComponent,
+    data: { layout: 'light-sidebar' },
+  },
+  {
+    path: 'properties/saved',
+    component: SavedPropertyListComponent,
+    data: { layout: 'light-sidebar' },
   },
   {
     path: '',
