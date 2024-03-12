@@ -5,7 +5,12 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './tables-widget11.component.html',
 })
 export class TablesWidget11Component implements OnInit {
-  constructor() {}
+  newProperties: string[];
 
-  ngOnInit(): void {}
+  constructor() {}
+  
+  ngOnInit(): void {
+    this.newProperties = ['1', '2', '3', '4', '5']
+    console.log('TablesWidget11Component - New Financial Calculations');
+  }
 }

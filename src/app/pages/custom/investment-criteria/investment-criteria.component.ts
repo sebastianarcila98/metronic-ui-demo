@@ -19,6 +19,7 @@ export class InvestmentCriteriaComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
+    console.log('InvestmentCriteriaComponent');
     this.initForm();
   }
 
