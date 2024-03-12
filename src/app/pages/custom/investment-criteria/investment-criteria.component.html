@@ -346,12 +346,16 @@
           <div class="row mb-10">
             <div class="col-md-6">
               <label class="form-label required fw-bold">Other Expenses</label
-              ><input
-                name="otherExpenses"
-                class="form-control form-control-lg form-control-solid"
-                formControlName="otherExpenses"
-                type="number"
-              />
+              >
+              <div class="input-group">
+                <input
+                  name="otherExpenses"
+                  class="form-control form-control-lg form-control-solid"
+                  formControlName="otherExpenses"
+                  type="number"
+                />
+                <span class="text-addon">Monthly</span>
+              </div>
               <div
                 class="fv-plugins-message-container invalid-feedback"
                 *ngIf="
