@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/internal/Subscription';
 
@@ -8,10 +8,12 @@ import { Subscription } from 'rxjs/internal/Subscription';
   styleUrl: './investment-criteria.component.scss'
 })
 export class InvestmentCriteriaComponent implements OnInit {
+  @Input() isDashboard: boolean;
   form: FormGroup;
   propertyCriteriaForm: FormGroup;
+  calculationValuesForm: FormGroup;
   private unsubscribe: Subscription[] = [];
-  selectedTab: string = 'purchase'; // Default tab
+  selectedTab: string = 'calculation'; // Default tab
 
 
   constructor(private fb: FormBuilder) {}
@@ -43,6 +45,23 @@ export class InvestmentCriteriaComponent implements OnInit {
       state: [''],
       city: [''],
       zipCode: [''],
+    });
+
+    this.calculationValuesForm = this.fb.group({
+      downPayment: [''], 
+      loanTerm: ['', [Validators.required]],
+      interestRate: ['', [Validators.required]],
+      closingCost: [''],
+      insuranceCost: [''],
+      repairAndMaintenance: [''],
+      vacancy: ['', [Validators.required]],
+      capitalExpenditure: ['', [Validators.required]],
+      managementFees: ['', [Validators.required]],
+      otherExpenses: ['', [Validators.required]],
+      annualAppreciation: ['', [Validators.required]],
+      annualIncomeGrowth: ['', [Validators.required]],
+      annualExpenseGrowth: ['', [Validators.required]],
+      sellingCost: ['', [Validators.required]],
     });
   }
 

@@ -44,19 +44,23 @@
                 </a>
               </div>
             </div>
+
+            <div class="d-flex" *ngIf="isDashboard">
+              <a
+                class="btn btn-sm btn-light me-2 cursor-pointer"
+                id="kt_user_follow_button"
+                href="http://localhost:4200/investment-criteria"
+              >
+                <span class="indicator-label">Edit</span>
+              </a>
+            </div>
   
-            <div class="d-flex">
+            <div class="d-flex" *ngIf="!isDashboard">
               <a
                 class="btn btn-sm btn-light me-2 cursor-pointer"
                 id="kt_user_follow_button"
               >
                 <span class="indicator-label">Edit</span>
-                <span class="indicator-progress">
-                  Please wait...
-                  <span
-                    class="spinner-border spinner-border-sm align-middle ms-2"
-                  ></span>
-                </span>
               </a>
               <a
                 class="btn btn-sm btn-primary me-3 cursor-pointer"
@@ -71,6 +75,13 @@
       </div> 
       <div class="d-flex h-55px">
         <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bolder flex-nowrap">
+          <li class="nav-item">
+            <a class="nav-link cursor-pointer text-active-primary me-6"
+              [class.active]="selectedTab === 'calculation'"
+              (click)="selectedTab = 'calculation'">
+                Calculation Values
+            </a>
+        </li>
             <li class="nav-item">
                 <a class="nav-link cursor-pointer text-active-primary me-6"
                   [class.active]="selectedTab === 'purchase'"
@@ -88,15 +99,312 @@
         </ul>
     </div>
     
-      
-      
 
-      <div class="mt-5">
+
+      <div class="mt-5" [ngClass]="isDashboard ? 'scrollable-content' : ''">
+        <!-- Calculation Values form -->
+        <div [formGroup]="calculationValuesForm" *ngIf="selectedTab === 'calculation'">
+          <div class="pt-5 pb-lg-5">
+            <div class="text-gray-500 fw-bold fs-6">
+              Pre-configured values necessary for analyzing properties.
+              <a href="#" class="link-primary fw-bolder"> More info</a>.
+            </div>
+          </div>
+          <!-- Loan Details Section -->
+          <div class="pt-5 pb-3 pt-lg-5">
+            <h2 class="d-flex align-items-center text-gray-500">
+              Loan Details
+            </h2>
+          </div>
+          <div class="row mb-10">
+            
+            <div class="col-md-6">
+              <label class="form-label required fw-bold">Down Payment</label
+              ><input
+                name="downPayment"
+                class="form-control form-control-lg form-control-solid"
+                formControlName="downPayment"
+              />
+              <div
+                class="fv-plugins-message-container invalid-feedback"
+                *ngIf="
+                  calculationValuesForm.get('downPayment')?.hasError('required') &&
+                  calculationValuesForm.get('downPayment')?.touched
+                "
+              >
+                Minimum CoC return is required
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label required fw-bold">Loan Term</label
+              ><input
+                name="loanTerm"
+                class="form-control form-control-lg form-control-solid"
+                formControlName="loanTerm"
+              />
+              <div
+                class="fv-plugins-message-container invalid-feedback"
+                *ngIf="
+                  calculationValuesForm.get('loanTerm')?.hasError('required') &&
+                  calculationValuesForm.get('loanTerm')?.touched
+                "
+              >
+                Cash flow is required
+              </div>
+            </div>
+          </div>
+          <div class="row mb-10">
+            
+            <div class="col-md-6">
+              <label class="d-flex align-items-center form-label"
+              ><span class="required fw-bold">Interest Rate</span></label
+            ><input
+              name="interestRate"
+              class="form-control form-control-lg form-control-solid"
+              formControlName="interestRate"
+            />
+            <div
+              class="fv-plugins-message-container invalid-feedback"
+              *ngIf="
+                calculationValuesForm.get('interestRate')?.hasError('required') &&
+                calculationValuesForm.get('interestRate')?.touched
+              "
+            >
+              Cap rate is required
+            </div>
+            <div class="form-text">
+              Percentage
+            </div>
+            </div>
+          </div>
+          <!-- Expenses Section -->
+          <div class="pt-5 pb-4 pt-lg-5">
+            <h2 class="d-flex align-items-center text-gray-500">
+              Expenses
+            </h2>
+          </div>
+          <div class="row mb-10">
+            <div class="col-md-6">
+              <label class="form-label required fw-bold">Closing Cost</label
+              ><input
+                name="closingCost"
+                class="form-control form-control-lg form-control-solid"
+                formControlName="closingCost"
+              />
+              <div
+                class="fv-plugins-message-container invalid-feedback"
+                *ngIf="
+                  calculationValuesForm.get('closingCost')?.hasError('required') &&
+                  calculationValuesForm.get('closingCost')?.touched
+                "
+              >
+                Purchase price is required
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label required fw-bold">Insurance Cost</label
+              ><input
+                name="insuranceCost"
+                class="form-control form-control-lg form-control-solid"
+                formControlName="insuranceCost"
+              />
+              <div
+                class="fv-plugins-message-container invalid-feedback"
+                *ngIf="
+                  calculationValuesForm.get('insuranceCost')?.hasError('required') &&
+                  calculationValuesForm.get('insuranceCost')?.touched
+                "
+              >
+                Cash flow is required
+              </div>
+            </div>
+            
+          </div>
+
+          <div class="row mb-10">
+            <div class="col-md-6">
+              <label class="form-label required fw-bold">Repair & Maintenance</label
+              ><input
+                name="repairAndMaintenance"
+                class="form-control form-control-lg form-control-solid"
+                formControlName="repairAndMaintenance"
+              />
+              <div
+                class="fv-plugins-message-container invalid-feedback"
+                *ngIf="
+                  calculationValuesForm.get('repairAndMaintenance')?.hasError('required') &&
+                  calculationValuesForm.get('repairAndMaintenance')?.touched
+                "
+              >
+                Cash flow is required
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label required fw-bold">Vacancy</label
+              ><input
+                name="vacancy"
+                class="form-control form-control-lg form-control-solid"
+                formControlName="vacancy"
+              />
+              <div
+                class="fv-plugins-message-container invalid-feedback"
+                *ngIf="
+                  calculationValuesForm.get('vacancy')?.hasError('required') &&
+                  calculationValuesForm.get('vacancy')?.touched
+                "
+              >
+                Cash flow is required
+              </div>
+            </div>
+          </div>
+
+          <div class="row mb-10">
+            <div class="col-md-6">
+              <label class="form-label required fw-bold">Capital Expenditures</label
+              ><input
+                name="capitalExpenditure"
+                class="form-control form-control-lg form-control-solid"
+                formControlName="capitalExpenditure"
+              />
+              <div
+                class="fv-plugins-message-container invalid-feedback"
+                *ngIf="
+                  calculationValuesForm.get('capitalExpenditure')?.hasError('required') &&
+                  calculationValuesForm.get('capitalExpenditure')?.touched
+                "
+              >
+                Cash flow is required
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label required fw-bold">Management Fees</label
+              ><input
+                name="managementFees"
+                class="form-control form-control-lg form-control-solid"
+                formControlName="managementFees"
+              />
+              <div
+                class="fv-plugins-message-container invalid-feedback"
+                *ngIf="
+                  calculationValuesForm.get('managementFees')?.hasError('required') &&
+                  calculationValuesForm.get('managementFees')?.touched
+                "
+              >
+                Cash flow is required
+              </div>
+            </div>
+          </div>
+          
+          
+
+          <div class="row mb-10">
+            <div class="col-md-6">
+              <label class="form-label required fw-bold">Other Expenses</label
+              ><input
+                name="otherExpenses"
+                class="form-control form-control-lg form-control-solid"
+                formControlName="otherExpenses"
+              />
+              <div
+                class="fv-plugins-message-container invalid-feedback"
+                *ngIf="
+                  calculationValuesForm.get('otherExpenses')?.hasError('required') &&
+                  calculationValuesForm.get('otherExpenses')?.touched
+                "
+              >
+                Cash flow is required
+              </div>
+            </div>
+          </div>
+
+          <!-- Long Term Pojections Section -->
+          <div class="pt-5 pb-4 pt-lg-5">
+            <h2 class="d-flex align-items-center text-gray-500">
+              Long-Term Projections
+            </h2>
+          </div>
+          <div class="row mb-10">
+            <div class="col-md-6">
+              <label class="d-flex align-items-center form-label"
+              ><span class="required fw-bold">Annual Appreciation</span></label
+            ><input
+              name="annualAppreciation"
+              class="form-control form-control-lg form-control-solid"
+              formControlName="annualAppreciation"
+            />
+            <div
+              class="fv-plugins-message-container invalid-feedback"
+              *ngIf="
+                calculationValuesForm.get('annualAppreciation')?.hasError('required') &&
+                calculationValuesForm.get('annualAppreciation')?.touched
+              "
+            >
+              Total cash needed is required
+            </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label required fw-bold">Annual Income Growth</label
+              ><input
+                name="annualIncomeGrowth"
+                class="form-control form-control-lg form-control-solid"
+                formControlName="annualIncomeGrowth"
+              />
+              <div
+                class="fv-plugins-message-container invalid-feedback"
+                *ngIf="
+                  calculationValuesForm.get('annualIncomeGrowth')?.hasError('required') &&
+                  calculationValuesForm.get('annualIncomeGrowth')?.touched
+                "
+              >
+                Cash flow is required
+              </div>
+            </div>
+          </div>
+
+          <div class="row mb-10">
+            <div class="col-md-6">
+              <label class="form-label required fw-bold">Annual Expense Growth</label
+              ><input
+                name="annualExpenseGrowth"
+                class="form-control form-control-lg form-control-solid"
+                formControlName="annualExpenseGrowth"
+              />
+              <div
+                class="fv-plugins-message-container invalid-feedback"
+                *ngIf="
+                  calculationValuesForm.get('annualExpenseGrowth')?.hasError('required') &&
+                  calculationValuesForm.get('annualExpenseGrowth')?.touched
+                "
+              >
+                Cash flow is required
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label required fw-bold">Selling Cost</label
+              ><input
+                name="sellingCost"
+                class="form-control form-control-lg form-control-solid"
+                formControlName="sellingCost"
+              />
+              <div
+                class="fv-plugins-message-container invalid-feedback"
+                *ngIf="
+                  calculationValuesForm.get('sellingCost')?.hasError('required') &&
+                  calculationValuesForm.get('sellingCost')?.touched
+                "
+              >
+                Cash flow is required
+              </div>
+            </div>
+          </div>
+
+        </div>
+
         <!-- Purchase Criteria form -->
         <div [formGroup]="form" *ngIf="selectedTab === 'purchase'">
           <div class="row mb-10">
             <div class="col-md-6">
-              <label class="form-label required">Purchase Price</label
+              <label class="form-label required fw-bold">Purchase Price</label
               ><input
                 name="purchasePrice"
                 class="form-control form-control-lg form-control-solid"
@@ -114,7 +422,7 @@
             </div>
             <div class="col-md-6">
               <label class="d-flex align-items-center form-label"
-              ><span class="required">Total Cash Needed</span></label
+              ><span class="required fw-bold">Total Cash Needed</span></label
             ><input
               name="cashNeeded"
               class="form-control form-control-lg form-control-solid"
@@ -134,7 +442,7 @@
 
           <div class="row mb-10">
             <div class="col-md-6">
-              <label class="form-label required">Cash on Cash Return</label
+              <label class="form-label required fw-bold">Cash on Cash Return</label
               ><input
                 name="cashOnCashReturn"
                 class="form-control form-control-lg form-control-solid"
@@ -152,7 +460,7 @@
             </div>
             <div class="col-md-6">
               <label class="d-flex align-items-center form-label"
-              ><span class="required">Cap Rate</span></label
+              ><span class="required fw-bold">Cap Rate</span></label
             ><input
               name="capRate"
               class="form-control form-control-lg form-control-solid"
@@ -176,7 +484,7 @@
 
           <div class="row mb-10">
             <div class="col-md-6">
-              <label class="form-label required">Internal Rate of Return</label
+              <label class="form-label required fw-bold">Internal Rate of Return</label
               ><input
                 name="internalRateOfReturn"
                 class="form-control form-control-lg form-control-solid"
@@ -193,7 +501,7 @@
               </div>
             </div>
             <div class="col-md-6">
-              <label class="form-label required">Cash Flow</label
+              <label class="form-label required fw-bold">Cash Flow</label
               ><input
                 name="cashFlow"
                 class="form-control form-control-lg form-control-solid"
@@ -217,7 +525,7 @@
         <div [formGroup]="propertyCriteriaForm" *ngIf="selectedTab === 'property'">
           <div class="row mb-10">
             <div class="col-md-6">
-              <label class="form-label required">Property Type</label
+              <label class="form-label required fw-bold">Property Type</label
                 ><select
                   name="propertyType"
                   class="form-select form-select-lg form-select-solid"
@@ -231,7 +539,7 @@
             </div>
             <div class="col-md-6">
               <label class="d-flex align-items-center form-label"
-              ><span class="required">Bedrooms</span></label>
+              ><span class="required fw-bold">Bedrooms</span></label>
               <input
               name="bedrooms"
               class="form-control form-control-lg form-control-solid"
@@ -251,7 +559,7 @@
           <div class="row mb-10">
             <div class="col-md-6">
               <label class="d-flex align-items-center form-label"
-              ><span class="required">Bathrooms</span></label>
+              ><span class="required fw-bold">Bathrooms</span></label>
               <input
               name="bathrooms"
               class="form-control form-control-lg form-control-solid"
@@ -268,7 +576,7 @@
               </div>
             </div>
             <div class="col-md-6">
-              <label class="form-label required">State</label
+              <label class="form-label required fw-bold">State</label
                 ><select
                   name="state"
                   class="form-select form-select-lg form-select-solid"
@@ -282,7 +590,7 @@
           </div>
           <div class="row mb-10">
             <div class="col-md-6">
-              <label class="form-label required">City</label
+              <label class="form-label required fw-bold">City</label
                 ><select
                   name="city"
                   class="form-select form-select-lg form-select-solid"
@@ -295,7 +603,7 @@
                 </select>
             </div>
             <div class="col-md-6">
-              <label class="form-label required">Zip Code</label
+              <label class="form-label required fw-bold">Zip Code</label
                 ><select
                   name="zipCode"
                   class="form-select form-select-lg form-select-solid"

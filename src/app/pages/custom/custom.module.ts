@@ -18,6 +18,7 @@ import { SavedPropertyListComponent } from './saved-property-list/saved-property
     CommonModule,
     ReactiveFormsModule,
     SharedModule
-  ]
+  ],
+  exports: [InvestmentCriteriaComponent]
 })
 export class CustomModule { }
