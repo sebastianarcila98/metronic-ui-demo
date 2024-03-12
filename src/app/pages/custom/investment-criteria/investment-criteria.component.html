@@ -120,11 +120,17 @@
             
             <div class="col-md-6">
               <label class="form-label required fw-bold">Down Payment</label
-              ><input
-                name="downPayment"
-                class="form-control form-control-lg form-control-solid"
-                formControlName="downPayment"
-              />
+              >
+              <div class="input-group">
+
+                <input
+                  name="downPayment"
+                  class="form-control form-control-lg form-control-solid"
+                  formControlName="downPayment"
+                  type="number"
+                />
+                <span class="input-addon">%</span>
+              </div>
               <div
                 class="fv-plugins-message-container invalid-feedback"
                 *ngIf="
@@ -137,11 +143,16 @@
             </div>
             <div class="col-md-6">
               <label class="form-label required fw-bold">Loan Term</label
-              ><input
-                name="loanTerm"
-                class="form-control form-control-lg form-control-solid"
-                formControlName="loanTerm"
-              />
+              >
+              <div class="input-group">
+                <input
+                  name="loanTerm"
+                  class="form-control form-control-lg form-control-solid"
+                  formControlName="loanTerm"
+                  type="number"
+                />
+                <span class="text-addon">Years</span>
+              </div>
               <div
                 class="fv-plugins-message-container invalid-feedback"
                 *ngIf="
@@ -158,11 +169,16 @@
             <div class="col-md-6">
               <label class="d-flex align-items-center form-label"
               ><span class="required fw-bold">Interest Rate</span></label
-            ><input
-              name="interestRate"
-              class="form-control form-control-lg form-control-solid"
-              formControlName="interestRate"
-            />
+            >
+            <div class="input-group">
+              <input
+                name="interestRate"
+                class="form-control form-control-lg form-control-solid"
+                formControlName="interestRate"
+                type="number"
+              />
+              <span class="input-addon">%</span>
+            </div>
             <div
               class="fv-plugins-message-container invalid-feedback"
               *ngIf="
@@ -186,11 +202,16 @@
           <div class="row mb-10">
             <div class="col-md-6">
               <label class="form-label required fw-bold">Closing Cost</label
-              ><input
-                name="closingCost"
-                class="form-control form-control-lg form-control-solid"
-                formControlName="closingCost"
-              />
+              >
+              <div class="input-group">
+                <input
+                  name="closingCost"
+                  class="form-control form-control-lg form-control-solid"
+                  formControlName="closingCost"
+                  type="number"
+                />
+                <span class="input-addon">%</span>
+              </div>
               <div
                 class="fv-plugins-message-container invalid-feedback"
                 *ngIf="
@@ -203,11 +224,16 @@
             </div>
             <div class="col-md-6">
               <label class="form-label required fw-bold">Insurance Cost</label
-              ><input
-                name="insuranceCost"
-                class="form-control form-control-lg form-control-solid"
-                formControlName="insuranceCost"
-              />
+              >
+              <div class="input-group">
+                <input
+                  name="insuranceCost"
+                  class="form-control form-control-lg form-control-solid"
+                  formControlName="insuranceCost"
+                  type="number"
+                />
+                <span class="input-addon">%</span>
+              </div>
               <div
                 class="fv-plugins-message-container invalid-feedback"
                 *ngIf="
@@ -224,11 +250,16 @@
           <div class="row mb-10">
             <div class="col-md-6">
               <label class="form-label required fw-bold">Repair & Maintenance</label
-              ><input
-                name="repairAndMaintenance"
-                class="form-control form-control-lg form-control-solid"
-                formControlName="repairAndMaintenance"
-              />
+              >
+              <div class="input-group">
+                <input
+                  name="repairAndMaintenance"
+                  class="form-control form-control-lg form-control-solid"
+                  formControlName="repairAndMaintenance"
+                  type="number"
+                />
+                <span class="input-addon">%</span>
+              </div>
               <div
                 class="fv-plugins-message-container invalid-feedback"
                 *ngIf="
@@ -241,11 +272,16 @@
             </div>
             <div class="col-md-6">
               <label class="form-label required fw-bold">Vacancy</label
-              ><input
-                name="vacancy"
-                class="form-control form-control-lg form-control-solid"
-                formControlName="vacancy"
-              />
+              >
+              <div class="input-group">
+                <input
+                  name="vacancy"
+                  class="form-control form-control-lg form-control-solid"
+                  formControlName="vacancy"
+                  type="number"
+                />
+                <span class="input-addon">%</span>
+              </div>
               <div
                 class="fv-plugins-message-container invalid-feedback"
                 *ngIf="
@@ -261,11 +297,16 @@
           <div class="row mb-10">
             <div class="col-md-6">
               <label class="form-label required fw-bold">Capital Expenditures</label
-              ><input
-                name="capitalExpenditure"
-                class="form-control form-control-lg form-control-solid"
-                formControlName="capitalExpenditure"
-              />
+              >
+              <div class="input-group">
+                <input
+                  name="capitalExpenditure"
+                  class="form-control form-control-lg form-control-solid"
+                  formControlName="capitalExpenditure"
+                  type="number"
+                />
+                <span class="input-addon">%</span>
+              </div>
               <div
                 class="fv-plugins-message-container invalid-feedback"
                 *ngIf="
@@ -278,11 +319,16 @@
             </div>
             <div class="col-md-6">
               <label class="form-label required fw-bold">Management Fees</label
-              ><input
-                name="managementFees"
-                class="form-control form-control-lg form-control-solid"
-                formControlName="managementFees"
-              />
+              >
+              <div class="input-group">
+                <input
+                  name="managementFees"
+                  class="form-control form-control-lg form-control-solid"
+                  formControlName="managementFees"
+                  type="number"
+                />
+                <span class="input-addon">%</span>
+              </div>
               <div
                 class="fv-plugins-message-container invalid-feedback"
                 *ngIf="
@@ -304,6 +350,7 @@
                 name="otherExpenses"
                 class="form-control form-control-lg form-control-solid"
                 formControlName="otherExpenses"
+                type="number"
               />
               <div
                 class="fv-plugins-message-container invalid-feedback"
@@ -327,11 +374,16 @@
             <div class="col-md-6">
               <label class="d-flex align-items-center form-label"
               ><span class="required fw-bold">Annual Appreciation</span></label
-            ><input
-              name="annualAppreciation"
-              class="form-control form-control-lg form-control-solid"
-              formControlName="annualAppreciation"
-            />
+            >
+            <div class="input-group">
+              <input
+                name="annualAppreciation"
+                class="form-control form-control-lg form-control-solid"
+                formControlName="annualAppreciation"
+                type="number"
+              />
+              <span class="input-addon">%</span>
+            </div>
             <div
               class="fv-plugins-message-container invalid-feedback"
               *ngIf="
@@ -344,11 +396,16 @@
             </div>
             <div class="col-md-6">
               <label class="form-label required fw-bold">Annual Income Growth</label
-              ><input
-                name="annualIncomeGrowth"
-                class="form-control form-control-lg form-control-solid"
-                formControlName="annualIncomeGrowth"
-              />
+              >
+              <div class="input-group">
+                <input
+                  name="annualIncomeGrowth"
+                  class="form-control form-control-lg form-control-solid"
+                  formControlName="annualIncomeGrowth"
+                  type="number"
+                />
+                <span class="input-addon">%</span>
+              </div>
               <div
                 class="fv-plugins-message-container invalid-feedback"
                 *ngIf="
@@ -364,11 +421,16 @@
           <div class="row mb-10">
             <div class="col-md-6">
               <label class="form-label required fw-bold">Annual Expense Growth</label
-              ><input
-                name="annualExpenseGrowth"
-                class="form-control form-control-lg form-control-solid"
-                formControlName="annualExpenseGrowth"
-              />
+              >
+              <div class="input-group">
+                <input
+                  name="annualExpenseGrowth"
+                  class="form-control form-control-lg form-control-solid"
+                  formControlName="annualExpenseGrowth"
+                  type="number"
+                />
+                <span class="input-addon">%</span>
+              </div>
               <div
                 class="fv-plugins-message-container invalid-feedback"
                 *ngIf="
@@ -381,11 +443,16 @@
             </div>
             <div class="col-md-6">
               <label class="form-label required fw-bold">Selling Cost</label
-              ><input
-                name="sellingCost"
-                class="form-control form-control-lg form-control-solid"
-                formControlName="sellingCost"
-              />
+              >
+              <div class="input-group">
+                <input
+                  name="sellingCost"
+                  class="form-control form-control-lg form-control-solid"
+                  formControlName="sellingCost"
+                  type="number"
+                />
+                <span class="input-addon">%</span>
+              </div>
               <div
                 class="fv-plugins-message-container invalid-feedback"
                 *ngIf="
@@ -409,6 +476,7 @@
                 name="purchasePrice"
                 class="form-control form-control-lg form-control-solid"
                 formControlName="purchasePrice"
+                type="number"
               />
               <div
                 class="fv-plugins-message-container invalid-feedback"
@@ -427,6 +495,7 @@
               name="cashNeeded"
               class="form-control form-control-lg form-control-solid"
               formControlName="cashNeeded"
+              type="number"
             />
             <div
               class="fv-plugins-message-container invalid-feedback"
@@ -443,11 +512,16 @@
           <div class="row mb-10">
             <div class="col-md-6">
               <label class="form-label required fw-bold">Cash on Cash Return</label
-              ><input
-                name="cashOnCashReturn"
-                class="form-control form-control-lg form-control-solid"
-                formControlName="cashOnCashReturn"
-              />
+              >
+              <div class="input-group">
+                <input
+                  name="cashOnCashReturn"
+                  class="form-control form-control-lg form-control-solid"
+                  formControlName="cashOnCashReturn"
+                  type="number"
+                />
+                <span class="input-addon">%</span>
+              </div>
               <div
                 class="fv-plugins-message-container invalid-feedback"
                 *ngIf="
@@ -461,11 +535,16 @@
             <div class="col-md-6">
               <label class="d-flex align-items-center form-label"
               ><span class="required fw-bold">Cap Rate</span></label
-            ><input
-              name="capRate"
-              class="form-control form-control-lg form-control-solid"
-              formControlName="capRate"
-            />
+            >
+            <div class="input-group">
+              <input
+                name="capRate"
+                class="form-control form-control-lg form-control-solid"
+                formControlName="capRate"
+                type="number"
+              />
+              <span class="input-addon">%</span>
+            </div>
             <div
               class="fv-plugins-message-container invalid-feedback"
               *ngIf="
@@ -485,11 +564,17 @@
           <div class="row mb-10">
             <div class="col-md-6">
               <label class="form-label required fw-bold">Internal Rate of Return</label
-              ><input
-                name="internalRateOfReturn"
-                class="form-control form-control-lg form-control-solid"
-                formControlName="internalRateOfReturn"
-              />
+              >
+              <div class="input-group">
+                <input
+                  name="internalRateOfReturn"
+                  class="form-control form-control-lg form-control-solid"
+                  formControlName="internalRateOfReturn"
+                  type="number"
+                />
+                <span class="input-addon">%</span>
+              </div>
+
               <div
                 class="fv-plugins-message-container invalid-feedback"
                 *ngIf="
@@ -502,11 +587,16 @@
             </div>
             <div class="col-md-6">
               <label class="form-label required fw-bold">Cash Flow</label
-              ><input
-                name="cashFlow"
-                class="form-control form-control-lg form-control-solid"
-                formControlName="cashFlow"
-              />
+              >
+              <div class="input-group">
+                <input
+                  name="cashFlow"
+                  class="form-control form-control-lg form-control-solid"
+                  formControlName="cashFlow"
+                  type="number"
+                />
+                <span class="text-addon">Monthly</span>
+              </div>
               <div
                 class="fv-plugins-message-container invalid-feedback"
                 *ngIf="
@@ -544,6 +634,7 @@
               name="bedrooms"
               class="form-control form-control-lg form-control-solid"
               formControlName="bedrooms"
+              type="number"
               />
               <div
                 class="fv-plugins-message-container invalid-feedback"
@@ -564,6 +655,7 @@
               name="bathrooms"
               class="form-control form-control-lg form-control-solid"
               formControlName="bathrooms"
+              type="number"
               />
               <div
                 class="fv-plugins-message-container invalid-feedback"

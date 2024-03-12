@@ -3,3 +3,24 @@
     overflow-y: auto; /* Makes only the vertical axis scrollable */
   }
   
+  .input-addon {
+    padding: 15px 20px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1;
+    color: #555;
+    text-align: center;
+    background-color: #eee;
+    border-radius: 4px;
+}
+
+.text-addon {
+  padding: 15px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  color: #555;
+  text-align: center;
+  background-color: #eee;
+  border-radius: 4px;
+}

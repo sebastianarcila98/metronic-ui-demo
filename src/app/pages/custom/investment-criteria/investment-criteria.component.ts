@@ -49,7 +49,7 @@ export class InvestmentCriteriaComponent implements OnInit {
     });
 
     this.calculationValuesForm = this.fb.group({
-      downPayment: [''], 
+      downPayment: [0], 
       loanTerm: ['', [Validators.required]],
       interestRate: ['', [Validators.required]],
       closingCost: [''],
