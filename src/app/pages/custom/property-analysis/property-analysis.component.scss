@@ -1,0 +1,12 @@
+.tooltip-target {
+    cursor: help; /* Changes the cursor to indicate interactive element */
+    border-bottom: 1px dashed; /* Makes a bolder dashed underline */
+    text-decoration: none; /* Removes the default text underline */
+    padding-bottom: 1px; /* Adds a little space between the text and the underline to prevent overlap */
+    border-color: #1B84FF;
+}
+
+.criteria-label {
+    cursor: default;
+    pointer-events: none; /* Disables click and hover events */
+}

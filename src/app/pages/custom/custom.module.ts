@@ -5,6 +5,8 @@ import { InvestmentCriteriaComponent } from './investment-criteria/investment-cr
 import { PropertyListComponent } from './property-list/property-list.component';
 import { SharedModule } from 'src/app/_metronic/shared/shared.module';
 import { SavedPropertyListComponent } from './saved-property-list/saved-property-list.component';
+import { PropertyAnalysisComponent } from './property-analysis/property-analysis.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -13,11 +15,13 @@ import { SavedPropertyListComponent } from './saved-property-list/saved-property
     InvestmentCriteriaComponent,
     PropertyListComponent,
     SavedPropertyListComponent,
+    PropertyAnalysisComponent,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    RouterModule
   ],
   exports: [InvestmentCriteriaComponent]
 })
