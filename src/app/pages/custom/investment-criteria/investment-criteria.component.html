@@ -77,9 +77,9 @@
         <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bolder flex-nowrap">
           <li class="nav-item">
             <a class="nav-link cursor-pointer text-active-primary me-6"
-              [class.active]="selectedTab === 'calculation'"
-              (click)="selectedTab = 'calculation'">
-                Calculation Values
+              [class.active]="selectedTab === 'analysis'"
+              (click)="selectedTab = 'analysis'">
+                Analysis Criteria
             </a>
           </li>
           <li class="nav-item">
@@ -100,8 +100,8 @@
       </div>
 
       <div class="mt-5" [ngClass]="isDashboard ? 'scrollable-content' : ''">
-        <!-- Calculation Values form -->
-        <div [formGroup]="calculationValuesForm" *ngIf="selectedTab === 'calculation'">
+        <!-- Analysis Criteria form -->
+        <div [formGroup]="analysisCriteriaForm" *ngIf="selectedTab === 'analysis'">
           <div class="pt-3">
             <div class="text-gray-500 fw-bold fs-6">
               Pre-configured values used for analyzing properties.
@@ -130,8 +130,8 @@
               <div
                 class="fv-plugins-message-container invalid-feedback"
                 *ngIf="
-                  calculationValuesForm.get('downPayment')?.hasError('required') &&
-                  calculationValuesForm.get('downPayment')?.touched
+                  analysisCriteriaForm.get('downPayment')?.hasError('required') &&
+                  analysisCriteriaForm.get('downPayment')?.touched
                 "
               >
                 This field is required
@@ -152,8 +152,8 @@
               <div
                 class="fv-plugins-message-container invalid-feedback"
                 *ngIf="
-                  calculationValuesForm.get('loanTerm')?.hasError('required') &&
-                  calculationValuesForm.get('loanTerm')?.touched
+                  analysisCriteriaForm.get('loanTerm')?.hasError('required') &&
+                  analysisCriteriaForm.get('loanTerm')?.touched
                 "
               >
                 This field is required
@@ -178,8 +178,8 @@
             <div
               class="fv-plugins-message-container invalid-feedback"
               *ngIf="
-                calculationValuesForm.get('interestRate')?.hasError('required') &&
-                calculationValuesForm.get('interestRate')?.touched
+                analysisCriteriaForm.get('interestRate')?.hasError('required') &&
+                analysisCriteriaForm.get('interestRate')?.touched
               "
             >
               This field is required
@@ -208,8 +208,8 @@
               <div
                 class="fv-plugins-message-container invalid-feedback"
                 *ngIf="
-                  calculationValuesForm.get('closingCost')?.hasError('required') &&
-                  calculationValuesForm.get('closingCost')?.touched
+                  analysisCriteriaForm.get('closingCost')?.hasError('required') &&
+                  analysisCriteriaForm.get('closingCost')?.touched
                 "
               >
                 This field is required
@@ -230,8 +230,8 @@
               <div
                 class="fv-plugins-message-container invalid-feedback"
                 *ngIf="
-                  calculationValuesForm.get('insuranceCost')?.hasError('required') &&
-                  calculationValuesForm.get('insuranceCost')?.touched
+                  analysisCriteriaForm.get('insuranceCost')?.hasError('required') &&
+                  analysisCriteriaForm.get('insuranceCost')?.touched
                 "
               >
                 This field is required
@@ -256,8 +256,8 @@
               <div
                 class="fv-plugins-message-container invalid-feedback"
                 *ngIf="
-                  calculationValuesForm.get('repairAndMaintenance')?.hasError('required') &&
-                  calculationValuesForm.get('repairAndMaintenance')?.touched
+                  analysisCriteriaForm.get('repairAndMaintenance')?.hasError('required') &&
+                  analysisCriteriaForm.get('repairAndMaintenance')?.touched
                 "
               >
                 This field is required
@@ -278,8 +278,8 @@
               <div
                 class="fv-plugins-message-container invalid-feedback"
                 *ngIf="
-                  calculationValuesForm.get('vacancy')?.hasError('required') &&
-                  calculationValuesForm.get('vacancy')?.touched
+                  analysisCriteriaForm.get('vacancy')?.hasError('required') &&
+                  analysisCriteriaForm.get('vacancy')?.touched
                 "
               >
                 This field is required
@@ -303,8 +303,8 @@
               <div
                 class="fv-plugins-message-container invalid-feedback"
                 *ngIf="
-                  calculationValuesForm.get('capitalExpenditure')?.hasError('required') &&
-                  calculationValuesForm.get('capitalExpenditure')?.touched
+                  analysisCriteriaForm.get('capitalExpenditure')?.hasError('required') &&
+                  analysisCriteriaForm.get('capitalExpenditure')?.touched
                 "
               >
                 This field is required
@@ -325,8 +325,8 @@
               <div
                 class="fv-plugins-message-container invalid-feedback"
                 *ngIf="
-                  calculationValuesForm.get('managementFees')?.hasError('required') &&
-                  calculationValuesForm.get('managementFees')?.touched
+                  analysisCriteriaForm.get('managementFees')?.hasError('required') &&
+                  analysisCriteriaForm.get('managementFees')?.touched
                 "
               >
                 This field is required
@@ -352,8 +352,8 @@
               <div
                 class="fv-plugins-message-container invalid-feedback"
                 *ngIf="
-                  calculationValuesForm.get('otherExpenses')?.hasError('required') &&
-                  calculationValuesForm.get('otherExpenses')?.touched
+                  analysisCriteriaForm.get('otherExpenses')?.hasError('required') &&
+                  analysisCriteriaForm.get('otherExpenses')?.touched
                 "
               >
                 This field is required
@@ -384,8 +384,8 @@
             <div
               class="fv-plugins-message-container invalid-feedback"
               *ngIf="
-                calculationValuesForm.get('annualAppreciation')?.hasError('required') &&
-                calculationValuesForm.get('annualAppreciation')?.touched
+                analysisCriteriaForm.get('annualAppreciation')?.hasError('required') &&
+                analysisCriteriaForm.get('annualAppreciation')?.touched
               "
             >
               This field is required
@@ -406,8 +406,8 @@
               <div
                 class="fv-plugins-message-container invalid-feedback"
                 *ngIf="
-                  calculationValuesForm.get('annualIncomeGrowth')?.hasError('required') &&
-                  calculationValuesForm.get('annualIncomeGrowth')?.touched
+                  analysisCriteriaForm.get('annualIncomeGrowth')?.hasError('required') &&
+                  analysisCriteriaForm.get('annualIncomeGrowth')?.touched
                 "
               >
                 This field is required
@@ -431,8 +431,8 @@
               <div
                 class="fv-plugins-message-container invalid-feedback"
                 *ngIf="
-                  calculationValuesForm.get('annualExpenseGrowth')?.hasError('required') &&
-                  calculationValuesForm.get('annualExpenseGrowth')?.touched
+                  analysisCriteriaForm.get('annualExpenseGrowth')?.hasError('required') &&
+                  analysisCriteriaForm.get('annualExpenseGrowth')?.touched
                 "
               >
                 This field is required
@@ -453,8 +453,8 @@
               <div
                 class="fv-plugins-message-container invalid-feedback"
                 *ngIf="
-                  calculationValuesForm.get('sellingCost')?.hasError('required') &&
-                  calculationValuesForm.get('sellingCost')?.touched
+                  analysisCriteriaForm.get('sellingCost')?.hasError('required') &&
+                  analysisCriteriaForm.get('sellingCost')?.touched
                 "
               >
                 This field is required

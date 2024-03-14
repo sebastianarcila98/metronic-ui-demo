@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { InvestmentCriteria } from 'src/app/models/InvestmentCriteria';
 import { PropertyCriteria } from 'src/app/models/PropertyCriteria';
+import { InvestmentCriteriaService } from 'src/app/services/investment-criteria.service';
 import { UtilityService } from 'src/app/services/utility.service';
 import Swal from 'sweetalert2';
 
@@ -15,30 +16,30 @@ export class InvestmentCriteriaComponent implements OnInit {
   @Input() isDashboard: boolean;
   purchaseCriteriaForm: FormGroup;
   propertyCriteriaForm: FormGroup;
-  calculationValuesForm: FormGroup;
+  analysisCriteriaForm: FormGroup;
   private unsubscribe: Subscription[] = [];
-  selectedTab: string = 'calculation'; // Default tab
+  selectedTab: string = 'analysis'; // Default tab
 
 
-  constructor(private fb: FormBuilder, private utilityService: UtilityService) {
+  constructor(private fb: FormBuilder, private utilityService: UtilityService, private investmentCriteriaService: InvestmentCriteriaService) {
     this.initForm();
   }
 
   ngOnInit() {
     console.log('InvestmentCriteriaComponent');
     if (this.isDashboard) {
-      this.calculationValuesForm.disable();
+      this.analysisCriteriaForm.disable();
       this.purchaseCriteriaForm.disable();
       this.propertyCriteriaForm.disable();
     }
-    // this.checkCalculationValuesForm();
+    // this.checkanalysisCriteriaForm();
     // this.checkPropertyCriteriaForm();
     // this.checkPurchaseCriteriaForm();
   }
 
-  initForm() {  
-    this.calculationValuesForm = this.fb.group({
-      downPayment: [null, [Validators.required]], 
+  initForm() {
+    this.analysisCriteriaForm = this.fb.group({
+      downPayment: [null, [Validators.required]],
       loanTerm: [null, [Validators.required]],
       interestRate: [null, [Validators.required]],
       closingCost: [null, [Validators.required]],
@@ -87,7 +88,7 @@ export class InvestmentCriteriaComponent implements OnInit {
             toast.onmouseenter = Swal.stopTimer;
             toast.onmouseleave = Swal.resumeTimer;
           }
-        }).fire({icon:'error',title:'<strong>Purchase Criteria</strong> is missing required fields.'});
+        }).fire({ icon: 'error', title: '<strong>Purchase Criteria</strong> form is missing required fields.' });
 
         return false;
       }
@@ -96,11 +97,11 @@ export class InvestmentCriteriaComponent implements OnInit {
     return true;
   }
 
-  calculationValuesFormIsValid() {
-    for (const control in this.calculationValuesForm.controls) {
-      if (this.calculationValuesForm.controls[control].errors) {
-        console.log('calculationValuesForm form has errors');
-        this.utilityService.listFormErrors(this.calculationValuesForm)
+  analysisCriteriaFormIsValid() {
+    for (const control in this.analysisCriteriaForm.controls) {
+      if (this.analysisCriteriaForm.controls[control].errors) {
+        console.log('analysisCriteriaForm form has errors');
+        this.utilityService.listFormErrors(this.analysisCriteriaForm)
 
         Swal.mixin({
           toast: true,
@@ -112,12 +113,12 @@ export class InvestmentCriteriaComponent implements OnInit {
             toast.onmouseenter = Swal.stopTimer;
             toast.onmouseleave = Swal.resumeTimer;
           }
-        }).fire({icon:'error',title:'<strong>Calculation Values</strong> is missing required fields.'});
+        }).fire({ icon: 'error', title: '<strong>Analysis Criteria</strong> form is missing required fields.' });
 
         return false;
       }
     }
-    console.log('calculationValuesForm form is correct');
+    console.log('analysisCriteriaForm form is correct');
     return true;
   }
 
@@ -137,7 +138,7 @@ export class InvestmentCriteriaComponent implements OnInit {
             toast.onmouseenter = Swal.stopTimer;
             toast.onmouseleave = Swal.resumeTimer;
           }
-        }).fire({icon:'error',title:'<strong>Property Criteria</strong> is missing required fields.'});
+        }).fire({ icon: 'error', title: '<strong>Property Criteria</strong> form is missing required fields.' });
 
         return false;
       }
@@ -145,23 +146,52 @@ export class InvestmentCriteriaComponent implements OnInit {
     console.log('propertyCriteriaForm form is correct');
     return true;
   }
-  
+
   onSubmit() {
-    if (!this.calculationValuesFormIsValid()) return;
+    if (!this.analysisCriteriaFormIsValid()) return;
     if (!this.purchaseCriteriaFormIsValid()) return;
     if (!this.propertyCriteriaFormIsValid()) return;
 
     const investmentCriteria: InvestmentCriteria = {
       propertyCriteria: this.propertyCriteriaForm.value,
       purchaseCriteria: this.purchaseCriteriaForm.value,
-      calculationValues: this.calculationValuesForm.value
+      analysisCriteria: this.analysisCriteriaForm.value
     };
 
-    // Here you would typically send this data to your server or use it as needed
     console.log('Submitting investment criteria:', investmentCriteria);
-    // For example: this.yourService.submitInvestmentCriteria(investmentCriteria);
+
+    this.investmentCriteriaService.updateInvestmentCriteria('17B17EE4-996D-4400-A62A-12634715E6C4', investmentCriteria).subscribe({
+      next: (data) => {
+        console.log(`Successful Response -> ${data}`);
+        Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          }
+        }).fire({ icon: 'success', title: '<strong>Saved successfuly!</strong>' });
+      },
+      error: (error) => {
+        console.error('Error -> ', error);
+        Swal.fire({
+          icon: "error",
+          title: "<h1>Oops...</h1>",
+          text: "Something went wrong! Please try again.",
+          showCloseButton: true,
+          showConfirmButton: false,
+          footer: '<b><a href="#">Contact support</a></b>'
+        });
+      },
+      complete: () => {
+        console.log('PostInvestmentCriteria Completed');
+      }
+    });
   }
-  
+
 
   ngOnDestroy() {
     this.unsubscribe.forEach((sb) => sb.unsubscribe());

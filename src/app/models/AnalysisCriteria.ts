@@ -1,4 +1,4 @@
-export interface CalculationValues {
+export interface AnalysisCriteria {
     downPayment: number;
     loanTerm: number;
     interestRate: number;
