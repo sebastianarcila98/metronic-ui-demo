@@ -10,7 +10,7 @@
     line-height: 1;
     color: #555;
     text-align: center;
-    background-color: #eee;
+    background-color: rgba(0, 0, 0, 0.1);
     border-radius: 4px;
 }
 
@@ -21,6 +21,20 @@
   line-height: 1;
   color: #555;
   text-align: center;
-  background-color: #eee;
+  background-color: rgba(0, 0, 0, 0.1);
   border-radius: 4px;
+}
+
+.input-error {
+  border-color: rgba(255, 0, 0, 0.393) !important; /* Ensure it overrides other styles */
+}
+
+.form-control, .form-select {
+  border-color: #F1F1F4;
+  border-width: 2px;
+}
+
+.form-control:focus {
+  border-width: 2px;
+  border-color: #C4CADA ;
 }
