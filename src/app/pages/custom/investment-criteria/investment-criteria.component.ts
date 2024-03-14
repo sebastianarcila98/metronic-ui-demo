@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { InvestmentCriteria } from 'src/app/models/InvestmentCriteria';
-import { PropertyCriteria } from 'src/app/models/PropertyCriteria';
 import { InvestmentCriteriaService } from 'src/app/services/investment-criteria.service';
 import { UtilityService } from 'src/app/services/utility.service';
 import Swal from 'sweetalert2';
@@ -78,17 +77,7 @@ export class InvestmentCriteriaComponent implements OnInit {
         console.log('purchaseCriteriaForm form has errors');
         this.utilityService.listFormErrors(this.purchaseCriteriaForm)
 
-        Swal.mixin({
-          toast: true,
-          position: "top-end",
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.onmouseenter = Swal.stopTimer;
-            toast.onmouseleave = Swal.resumeTimer;
-          }
-        }).fire({ icon: 'error', title: '<strong>Purchase Criteria</strong> form is missing required fields.' });
+        this.utilityService.showToast({icon: 'error', title: '<strong>Purchase Criteria</strong> form is missing required fields.'});
 
         return false;
       }
@@ -103,17 +92,7 @@ export class InvestmentCriteriaComponent implements OnInit {
         console.log('analysisCriteriaForm form has errors');
         this.utilityService.listFormErrors(this.analysisCriteriaForm)
 
-        Swal.mixin({
-          toast: true,
-          position: "top-end",
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.onmouseenter = Swal.stopTimer;
-            toast.onmouseleave = Swal.resumeTimer;
-          }
-        }).fire({ icon: 'error', title: '<strong>Analysis Criteria</strong> form is missing required fields.' });
+        this.utilityService.showToast({icon: 'error', title: '<strong>Analysis Criteria</strong> form is missing required fields.'});
 
         return false;
       }
@@ -128,17 +107,7 @@ export class InvestmentCriteriaComponent implements OnInit {
         console.log('propertyCriteriaForm form has errors');
         this.utilityService.listFormErrors(this.propertyCriteriaForm)
 
-        Swal.mixin({
-          toast: true,
-          position: "top-end",
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.onmouseenter = Swal.stopTimer;
-            toast.onmouseleave = Swal.resumeTimer;
-          }
-        }).fire({ icon: 'error', title: '<strong>Property Criteria</strong> form is missing required fields.' });
+        this.utilityService.showToast({icon: 'error', title: '<strong>Property Criteria</strong> form is missing required fields.'});
 
         return false;
       }
@@ -163,28 +132,16 @@ export class InvestmentCriteriaComponent implements OnInit {
     this.investmentCriteriaService.updateInvestmentCriteria('17B17EE4-996D-4400-A62A-12634715E6C4', investmentCriteria).subscribe({
       next: (data) => {
         console.log(`Successful Response -> ${data}`);
-        Swal.mixin({
-          toast: true,
-          position: "top-end",
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.onmouseenter = Swal.stopTimer;
-            toast.onmouseleave = Swal.resumeTimer;
-          }
-        }).fire({ icon: 'success', title: '<strong>Saved successfuly!</strong>' });
+
+        this.analysisCriteriaForm.setValue(data.analysisCriteria);
+        this.propertyCriteriaForm.setValue(data.propertyCriteria);
+        this.purchaseCriteriaForm.setValue(data.purchaseCriteria);
+
+        this.utilityService.showToast({icon: 'success', title: '<b>Saved Successfuly!</b>'});
       },
       error: (error) => {
         console.error('Error -> ', error);
-        Swal.fire({
-          icon: "error",
-          title: "<h1>Oops...</h1>",
-          text: "Something went wrong! Please try again.",
-          showCloseButton: true,
-          showConfirmButton: false,
-          footer: '<b><a href="#">Contact support</a></b>'
-        });
+        this.utilityService.showError();
       },
       complete: () => {
         console.log('PostInvestmentCriteria Completed');
