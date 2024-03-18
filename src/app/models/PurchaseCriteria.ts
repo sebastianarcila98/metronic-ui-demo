@@ -1,4 +1,5 @@
 export interface PurchaseCriteria {
+    id: string;
     purchasePrice: number | null;
     cashNeeded: number | null;
     cashOnCashReturn: number | null;

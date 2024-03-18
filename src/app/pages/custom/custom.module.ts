@@ -7,6 +7,7 @@ import { SharedModule } from 'src/app/_metronic/shared/shared.module';
 import { SavedPropertyListComponent } from './saved-property-list/saved-property-list.component';
 import { PropertyAnalysisComponent } from './property-analysis/property-analysis.component';
 import { RouterModule } from '@angular/router';
+import { CurrencyFormatDirective } from 'src/app/directives/currency-format.directive';
 
 
 
@@ -21,7 +22,8 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     ReactiveFormsModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    CurrencyFormatDirective
   ],
   exports: [InvestmentCriteriaComponent]
 })

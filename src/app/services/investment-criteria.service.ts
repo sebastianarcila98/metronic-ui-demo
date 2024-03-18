@@ -11,6 +11,10 @@ export class InvestmentCriteriaService {
 
   constructor(private httpClient: HttpClient) { }
 
+  getInvestmentCriteria(userId: string): Observable<InvestmentCriteria> {
+    return this.httpClient.get<InvestmentCriteria>(`${environment.apiUrl}/${userId}/investment-criteria`);
+  }
+
   updateInvestmentCriteria(userId: string, investmentCriteria: InvestmentCriteria): Observable<InvestmentCriteria> {
 		return this.httpClient.put<InvestmentCriteria>(`${environment.apiUrl}/${userId}/investment-criteria`, investmentCriteria);
 	}

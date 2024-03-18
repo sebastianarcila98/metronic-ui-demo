@@ -17,7 +17,7 @@
 .text-addon {
   padding: 15px 20px;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1;
   color: #555;
   text-align: center;
@@ -37,4 +37,14 @@
 .form-control:focus {
   border-width: 2px;
   border-color: #C4CADA ;
+}
+
+
+.input-editing {
+  background-color: #F9F9F9; /* light green for editing */
+}
+
+.input-non-editing {
+  cursor: not-allowed;
+  background-color: #F1F1F4; /* light grey for non-editing */
 }

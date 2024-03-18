@@ -48,9 +48,9 @@
             <div class="d-flex" *ngIf="isDashboard">
               <a
                 class="btn btn-sm btn-light-primary me-2 cursor-pointer"
-                id="kt_user_follow_button"
-                href="http://localhost:4200/investment-criteria"
-              >
+                [routerLink]="['/investment-criteria']"
+                [queryParams]="{ edit: true }"
+                >
                 <span class="indicator-label">Edit</span>
               </a>
             </div>
@@ -58,12 +58,14 @@
             <div class="d-flex" *ngIf="!isDashboard">
               <a
                 class="btn btn-sm btn-light me-2 cursor-pointer"
+                (click)="toggleEditing()"
               >
-                <span class="indicator-label">Edit</span>
+                <span class="indicator-label"> {{ isEditing ? 'Cancel' : 'Edit' }}</span>
               </a>
               <a
                 class="btn btn-sm btn-primary me-3 cursor-pointer"
                 data-bs-toggle="toast"
+                [class.disabled]="!isEditing"
                 (click)="onSubmit()"
               >
                 Save
@@ -124,6 +126,7 @@
                   class="form-control form-control-lg form-control-solid"
                   formControlName="downPayment"
                   type="number"
+                  [ngClass]="{'input-editing': isEditing, 'input-non-editing': !isEditing}"
                 />
                 <span class="input-addon">%</span>
               </div>
@@ -146,6 +149,7 @@
                   class="form-control form-control-lg form-control-solid"
                   formControlName="loanTerm"
                   type="number"
+                  [ngClass]="{'input-editing': isEditing, 'input-non-editing': !isEditing}"
                 />
                 <span class="text-addon">Years</span>
               </div>
@@ -172,6 +176,7 @@
                 class="form-control form-control-lg form-control-solid"
                 formControlName="interestRate"
                 type="number"
+                [ngClass]="{'input-editing': isEditing, 'input-non-editing': !isEditing}"
               />
               <span class="input-addon">%</span>
             </div>
@@ -202,6 +207,7 @@
                   class="form-control form-control-lg form-control-solid"
                   formControlName="closingCost"
                   type="number"
+                  [ngClass]="{'input-editing': isEditing, 'input-non-editing': !isEditing}"
                 />
                 <span class="input-addon">%</span>
               </div>
@@ -223,7 +229,9 @@
                   name="insuranceCost"
                   class="form-control form-control-lg form-control-solid"
                   formControlName="insuranceCost"
-                  type="number"
+                  appCurrencyFormat
+                  type="text"
+                  [ngClass]="{'input-editing': isEditing, 'input-non-editing': !isEditing}"
                 />
                 <span class="text-addon">Monthly</span>
               </div>
@@ -250,6 +258,7 @@
                   class="form-control form-control-lg form-control-solid"
                   formControlName="repairAndMaintenance"
                   type="number"
+                  [ngClass]="{'input-editing': isEditing, 'input-non-editing': !isEditing}"
                 />
                 <span class="input-addon">%</span>
               </div>
@@ -272,6 +281,7 @@
                   class="form-control form-control-lg form-control-solid"
                   formControlName="vacancy"
                   type="number"
+                  [ngClass]="{'input-editing': isEditing, 'input-non-editing': !isEditing}"
                 />
                 <span class="input-addon">%</span>
               </div>
@@ -297,6 +307,7 @@
                   class="form-control form-control-lg form-control-solid"
                   formControlName="capitalExpenditure"
                   type="number"
+                  [ngClass]="{'input-editing': isEditing, 'input-non-editing': !isEditing}"
                 />
                 <span class="input-addon">%</span>
               </div>
@@ -319,6 +330,7 @@
                   class="form-control form-control-lg form-control-solid"
                   formControlName="managementFees"
                   type="number"
+                  [ngClass]="{'input-editing': isEditing, 'input-non-editing': !isEditing}"
                 />
                 <span class="input-addon">%</span>
               </div>
@@ -345,7 +357,9 @@
                   name="otherExpenses"
                   class="form-control form-control-lg form-control-solid"
                   formControlName="otherExpenses"
-                  type="number"
+                  appCurrencyFormat
+                  type="text"
+                  [ngClass]="{'input-editing': isEditing, 'input-non-editing': !isEditing}"
                 />
                 <span class="text-addon">Monthly</span>
               </div>
@@ -378,6 +392,7 @@
                 class="form-control form-control-lg form-control-solid"
                 formControlName="annualAppreciation"
                 type="number"
+                [ngClass]="{'input-editing': isEditing, 'input-non-editing': !isEditing}"
               />
               <span class="input-addon">%</span>
             </div>
@@ -400,6 +415,7 @@
                   class="form-control form-control-lg form-control-solid"
                   formControlName="annualIncomeGrowth"
                   type="number"
+                  [ngClass]="{'input-editing': isEditing, 'input-non-editing': !isEditing}"
                 />
                 <span class="input-addon">%</span>
               </div>
@@ -425,6 +441,7 @@
                   class="form-control form-control-lg form-control-solid"
                   formControlName="annualExpenseGrowth"
                   type="number"
+                  [ngClass]="{'input-editing': isEditing, 'input-non-editing': !isEditing}"
                 />
                 <span class="input-addon">%</span>
               </div>
@@ -447,6 +464,7 @@
                   class="form-control form-control-lg form-control-solid"
                   formControlName="sellingCost"
                   type="number"
+                  [ngClass]="{'input-editing': isEditing, 'input-non-editing': !isEditing}"
                 />
                 <span class="input-addon">%</span>
               </div>
@@ -470,13 +488,17 @@
             <div class="col-md-6">
               <label class="form-label  fw-bold">Purchase Price</label
               >
-              <input
-                name="purchasePrice"
-                class="form-control form-control-lg form-control-solid"
-                formControlName="purchasePrice"
-                type="number"
-                [ngClass]="{'input-error': purchaseCriteriaForm.get('purchasePrice')?.errors?.required && purchaseCriteriaForm.get('purchasePrice')?.touched}"
-              />
+              <div class="input-group">
+                <input
+                  name="purchasePrice"
+                  class="form-control form-control-lg form-control-solid"
+                  formControlName="purchasePrice"
+                  appCurrencyFormat
+                  type="text"
+                  [ngClass]="{'input-editing': isEditing, 'input-non-editing': !isEditing}"
+                />
+                <span class="text-addon">$</span>
+              </div>
               <div class="form-text">
                 Maximum purchase price
               </div>
@@ -484,13 +506,17 @@
             <div class="col-md-6">
               <label class="d-flex align-items-center form-label"
               ><span class="fw-bold">Total Cash Needed</span></label>
-              <input
-                name="cashNeeded"
-                class="form-control form-control-lg form-control-solid"
-                formControlName="cashNeeded"
-                type="number"
-                [ngClass]="{'input-error': purchaseCriteriaForm.get('cashNeeded')?.errors?.required && purchaseCriteriaForm.get('cashNeeded')?.touched}"
-              />
+              <div class="input-group">
+                <input
+                  name="cashNeeded"
+                  class="form-control form-control-lg form-control-solid"
+                  formControlName="cashNeeded"
+                  appCurrencyFormat
+                  type="text"
+                  [ngClass]="{'input-editing': isEditing, 'input-non-editing': !isEditing}"
+                />
+                <span class="text-addon">$</span>
+              </div>
               <div class="form-text">
                 Maximum cash needed
               </div>
@@ -507,7 +533,7 @@
                   class="form-control form-control-lg form-control-solid"
                   formControlName="cashOnCashReturn"
                   type="number"
-                  [ngClass]="{'input-error': purchaseCriteriaForm.get('cashOnCashReturn')?.errors?.required && purchaseCriteriaForm.get('cashOnCashReturn')?.touched}"
+                  [ngClass]="{'input-editing': isEditing, 'input-non-editing': !isEditing}"
                 />
                 <span class="input-addon">%</span>
               </div>
@@ -525,6 +551,7 @@
                 class="form-control form-control-lg form-control-solid"
                 formControlName="capRate"
                 type="number"
+                [ngClass]="{'input-editing': isEditing, 'input-non-editing': !isEditing}"
               />
               <span class="input-addon">%</span>
             </div>
@@ -554,6 +581,7 @@
                   class="form-control form-control-lg form-control-solid"
                   formControlName="internalRateOfReturn"
                   type="number"
+                  [ngClass]="{'input-editing': isEditing, 'input-non-editing': !isEditing}"
                 />
                 <span class="input-addon">%</span>
               </div>
@@ -579,7 +607,9 @@
                   name="cashFlow"
                   class="form-control form-control-lg form-control-solid"
                   formControlName="cashFlow"
-                  type="number"
+                  appCurrencyFormat
+                  type="text"
+                  [ngClass]="{'input-editing': isEditing, 'input-non-editing': !isEditing}"
                 />
                 <span class="text-addon">Monthly</span>
               </div>
@@ -609,8 +639,9 @@
                   name="propertyType"
                   class="form-select form-select-lg form-select-solid"
                   formControlName="propertyType"
+                  [ngClass]="{'input-editing': isEditing, 'input-non-editing': !isEditing}"
                 >
-                  <option value="0">Multi-Family</option>
+                  <option value="Multi-Family">Multi-Family</option>
                   <option disabled value="1">Single Family (coming soon)</option>
                   <option disabled value="2">Condo (coming soon)</option>
                   <option disabled value="3">Townhouse (coming soon)</option>
@@ -631,8 +662,9 @@
                   name="state"
                   class="form-select form-select-lg form-select-solid"
                   formControlName="state"
+                  [ngClass]="{'input-editing': isEditing, 'input-non-editing': !isEditing}"
                 >
-                  <option value="1">FL</option>
+                  <option value="FL">FL</option>
                   <option disabled value="1">AL</option>
                   <option disabled value="2">LA</option>
                 </select>
@@ -695,8 +727,9 @@
                   name="city"
                   class="form-select form-select-lg form-select-solid"
                   formControlName="city"
+                  [ngClass]="{'input-editing': isEditing, 'input-non-editing': !isEditing}"
                 >
-                  <option value="1">Tampa</option>
+                  <option value="Tampa">Tampa</option>
                   <option disabled value="1">Miami</option>
                   <option disabled value="2">Saint Petersburg</option>
                   <option disabled value="3">Ybor</option>
@@ -717,6 +750,7 @@
                   name="zipCode"
                   class="form-select form-select-lg form-select-solid"
                   formControlName="zipCode"
+                  [ngClass]="{'input-editing': isEditing, 'input-non-editing': !isEditing}"
                 >
                   <option value="1">33629</option>
                   <option disabled value="1">33545</option>

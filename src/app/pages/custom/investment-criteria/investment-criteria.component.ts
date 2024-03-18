@@ -1,10 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { InvestmentCriteria } from 'src/app/models/InvestmentCriteria';
 import { InvestmentCriteriaService } from 'src/app/services/investment-criteria.service';
 import { UtilityService } from 'src/app/services/utility.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-investment-criteria',
@@ -18,26 +18,62 @@ export class InvestmentCriteriaComponent implements OnInit {
   analysisCriteriaForm: FormGroup;
   private unsubscribe: Subscription[] = [];
   selectedTab: string = 'analysis'; // Default tab
+  isEditing: boolean;
+  investmentCriteriaId: string;
+  originalAnalysisCriteriaData: any;
+  originalPurchaseCriteriaData: any;
+  originalPropertyCriteriaData: any;
 
 
-  constructor(private fb: FormBuilder, private utilityService: UtilityService, private investmentCriteriaService: InvestmentCriteriaService) {
+  constructor(
+    private fb: FormBuilder, 
+    private utilityService: UtilityService, 
+    private investmentCriteriaService: InvestmentCriteriaService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private cdr: ChangeDetectorRef
+  ) {
+    console.log('InvestmentCriteriaComponent');
+    this.activatedRoute.queryParams.subscribe(params => {
+      if (params['edit'] === 'true') {
+        this.isEditing = true;
+        this.router.navigate(['/investment-criteria']);
+      }
+    });
+
     this.initForm();
   }
 
   ngOnInit() {
-    console.log('InvestmentCriteriaComponent');
-    if (this.isDashboard) {
+    this.investmentCriteriaService.getInvestmentCriteria('ED8FCF47-66EC-4BED-9ADE-44602830AA65').subscribe({
+      next: (data) => {
+        this.investmentCriteriaId = data.id;
+        this.analysisCriteriaForm.patchValue(data.analysisCriteria);
+        this.propertyCriteriaForm.patchValue(data.propertyCriteria);
+        this.purchaseCriteriaForm.patchValue(data.purchaseCriteria);
+      },
+      error: (error) => {
+        console.error('InvestmentCriteriaComponent Error', error);
+        this.utilityService.showError();
+      },
+      complete: () => {
+        console.log('investmentCriteriaId: ', this.investmentCriteriaId);
+        console.log('analysisCriteriaForm: ', this.analysisCriteriaForm.value);
+        console.log('propertyCriteriaForm: ', this.propertyCriteriaForm.value);
+        console.log('purchaseCriteriaForm: ', this.purchaseCriteriaForm.value);      
+      }
+    })
+
+    if (this.isDashboard || !this.isEditing) {
       this.analysisCriteriaForm.disable();
       this.purchaseCriteriaForm.disable();
       this.propertyCriteriaForm.disable();
-    }
-    // this.checkanalysisCriteriaForm();
-    // this.checkPropertyCriteriaForm();
-    // this.checkPurchaseCriteriaForm();
+    }    
   }
 
   initForm() {
     this.analysisCriteriaForm = this.fb.group({
+      id: [null, Validators.required],
       downPayment: [null, [Validators.required]],
       loanTerm: [null, [Validators.required]],
       interestRate: [null, [Validators.required]],
@@ -55,6 +91,7 @@ export class InvestmentCriteriaComponent implements OnInit {
     });
 
     this.purchaseCriteriaForm = this.fb.group({
+      id: [null, Validators.required],
       purchasePrice: [null],
       cashNeeded: [null],
       cashOnCashReturn: [null],
@@ -64,12 +101,37 @@ export class InvestmentCriteriaComponent implements OnInit {
     });
 
     this.propertyCriteriaForm = this.fb.group({
+      id: [null, Validators.required],
       propertyType: [null, [Validators.required]],
       state: [null, [Validators.required]],
       city: [null, [Validators.required]],
       zipCode: [null],
     });
   }
+
+  toggleEditing() {
+    this.isEditing = !this.isEditing;
+
+    if (this.isEditing) {
+        // Store the current form data
+        this.originalAnalysisCriteriaData = this.analysisCriteriaForm.getRawValue();
+        this.originalPurchaseCriteriaData = this.purchaseCriteriaForm.getRawValue();
+        this.originalPropertyCriteriaData = this.propertyCriteriaForm.getRawValue();
+
+        this.analysisCriteriaForm.enable();
+        this.purchaseCriteriaForm.enable();
+        this.propertyCriteriaForm.enable();
+    } else {
+        // Restore the original form data if editing is canceled
+        this.analysisCriteriaForm.setValue(this.originalAnalysisCriteriaData);
+        this.purchaseCriteriaForm.setValue(this.originalPurchaseCriteriaData);
+        this.propertyCriteriaForm.setValue(this.originalPropertyCriteriaData);
+
+        this.analysisCriteriaForm.disable();
+        this.purchaseCriteriaForm.disable();
+        this.propertyCriteriaForm.disable();
+    }
+}
 
   purchaseCriteriaFormIsValid() {
     for (const control in this.purchaseCriteriaForm.controls) {
@@ -122,20 +184,27 @@ export class InvestmentCriteriaComponent implements OnInit {
     if (!this.propertyCriteriaFormIsValid()) return;
 
     const investmentCriteria: InvestmentCriteria = {
+      id: this.investmentCriteriaId,
       propertyCriteria: this.propertyCriteriaForm.value,
       purchaseCriteria: this.purchaseCriteriaForm.value,
       analysisCriteria: this.analysisCriteriaForm.value
     };
 
-    console.log('Submitting investment criteria:', investmentCriteria);
+    console.log('Submitting investment criteria: ', investmentCriteria);
 
-    this.investmentCriteriaService.updateInvestmentCriteria('17B17EE4-996D-4400-A62A-12634715E6C4', investmentCriteria).subscribe({
+    this.investmentCriteriaService.updateInvestmentCriteria('ED8FCF47-66EC-4BED-9ADE-44602830AA65', investmentCriteria).subscribe({
       next: (data) => {
-        console.log(`Successful Response -> ${data}`);
+        this.investmentCriteriaId = data.id;
+        this.analysisCriteriaForm.patchValue(data.analysisCriteria);
+        this.propertyCriteriaForm.patchValue(data.propertyCriteria);
+        this.purchaseCriteriaForm.patchValue(data.purchaseCriteria);
 
-        this.analysisCriteriaForm.setValue(data.analysisCriteria);
-        this.propertyCriteriaForm.setValue(data.propertyCriteria);
-        this.purchaseCriteriaForm.setValue(data.purchaseCriteria);
+        this.isEditing = false;
+        this.analysisCriteriaForm.disable();
+        this.purchaseCriteriaForm.disable();
+        this.propertyCriteriaForm.disable();
+        
+        this.cdr.detectChanges();
 
         this.utilityService.showToast({icon: 'success', title: '<b>Saved Successfuly!</b>'});
       },
@@ -144,7 +213,10 @@ export class InvestmentCriteriaComponent implements OnInit {
         this.utilityService.showError();
       },
       complete: () => {
-        console.log('PostInvestmentCriteria Completed');
+        console.log('investmentCriteriaId: ', this.investmentCriteriaId);
+        console.log('analysisCriteriaForm: ', this.analysisCriteriaForm.value);
+        console.log('propertyCriteriaForm: ', this.propertyCriteriaForm.value);
+        console.log('purchaseCriteriaForm: ', this.purchaseCriteriaForm.value);  
       }
     });
   }

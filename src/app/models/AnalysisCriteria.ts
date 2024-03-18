@@ -1,4 +1,5 @@
 export interface AnalysisCriteria {
+    id: string;
     downPayment: number;
     loanTerm: number;
     interestRate: number;
