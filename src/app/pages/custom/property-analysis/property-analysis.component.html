@@ -1,69 +1,31 @@
 <div class="container">
+    <!-- PropertySummary -->
     <div class="card mb-5 mb-xl-10">
-        <div class="card-body pt-9 pb-0">
+        <app-property-summary-card [propertyAnalysis]="propertyAnalysis"></app-property-summary-card>
+        <!-- <div class="card-body pt-9 pb-0">
             <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
                 <div class="me-7 mb-4">
-                    <div class="
-                    symbol symbol-100px symbol-lg-160px symbol-fixed
-                    position-relative
-                ">
-                        <img src="./assets/media/avatars/300-1.jpg"
-                            alt="Metronic" />
-                        <div class="
-                    position-absolute
-                    translate-middle
-                    bottom-0
-                    start-100
-                    mb-6
-                    bg-success
-                    rounded-circle
-                    border border-4 border-white
-                    h-20px
-                    w-20px
-                    "></div>
+                    <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
+                        <img src="./assets/media/avatars/300-1.jpg" alt="Property">
+                        <div class="position-absolute translate-middle bottom-0 start-100 mb-6 bg-success rounded-circle border border-4 border-white h-20px w-20px"></div>
                     </div>
                 </div>
 
                 <div class="flex-grow-1">
-                    <div class="
-                    d-flex
-                    justify-content-between
-                    align-items-start
-                    flex-wrap
-                    mb-2
-                ">
+                    <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
                         <div class="d-flex flex-column">
                             <div class="d-flex align-items-center mb-2">
-                                <a class="
-                        text-gray-800 text-hover-primary
-                        fs-2
-                        fw-bolder
-                        me-1
-                        cursor-pointer
-                        ">
-                                    9801 N 11th St, Tampa, FL 33612
-                                </a>
+                                <span class="text-gray-800 text-hover-primary fs-2 fw-bolder me-1">{{ propertyAnalysis.formattedAddress }}</span>
                             </div>
-
-                            <div
-                                class="d-flex flex-wrap fw-bold fs-6 mb-4 pe-2">
-                                <a class="
-                        d-flex
-                        align-items-center
-                        text-gray-500 text-hover-primary
-                        me-5
-                        mb-2
-                        cursor-pointer
-                        ">
-                                    Multi-family | 3 Units | 1092 Sqft
-                                </a>
+                            <div class="d-flex flex-wrap fw-bold fs-6 mb-4 pe-2">
+                                <span class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
+                                    {{ propertyAnalysis.propertyType }} | {{ propertyAnalysis.units }} Units | {{ propertyAnalysis.squareFootage }} Sqft
+                                </span>
                             </div>
                         </div>
-
                         <div class="d-flex my-4">
                             <a class="btn btn-sm btn-light cursor-pointer">
-                                <app-keenicon name="heart"
-                                    class="fs-3"></app-keenicon>
+                                <app-keenicon name="heart" class="fs-3"></app-keenicon>
                             </a>
                         </div>
                     </div>
@@ -71,106 +33,56 @@
                     <div class="d-flex flex-wrap flex-stack">
                         <div class="d-flex flex-column flex-grow-1 pe-8">
                             <div class="d-flex flex-wrap">
-                                <div class="
-                                border border-gray-300 border-dashed
-                                rounded
-                                min-w-125px
-                                py-3
-                                px-4
-                                me-6
-                                mb-3
-                                ">
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                     <div class="d-flex align-items-center">
-                                        <div
-                                            class="fs-2 text-success fw-bolder">$1,200/yr</div>
+                                        <div class="fs-2 fw-bolder" [ngClass]="{'text-danger': !propertyAnalysis.isCashFlowWithinCriteria, 'text-success': propertyAnalysis.isCashFlowWithinCriteria}">
+                                            {{ propertyAnalysis.cashFlow | currency:'USD':'symbol':'1.0-0' }}
+                                        </div>
                                     </div>
-
-                                    <div
-                                        class="fw-bold fs-6 text-gray-500">Cash
-                                        Flow</div>
+                                    <div class="fw-bold fs-6 text-gray-500">Cash Flow</div>
                                 </div>
 
-                                <div class="
-                        border border-gray-300 border-dashed
-                        rounded
-                        min-w-125px
-                        py-3
-                        px-4
-                        me-6
-                        mb-3
-                        ">
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                     <div class="d-flex align-items-center">
-                                        <div
-                                            class="fs-2 text-success fw-bolder">9%</div>
+                                        <div class="fs-2 fw-bolder" [ngClass]="{'text-danger': !propertyAnalysis.isCashOnCashReturnWithinCriteria, 'text-success': propertyAnalysis.isCashOnCashReturnWithinCriteria}">
+                                            {{ propertyAnalysis.cashOnCashReturn }}%
+                                        </div>
                                     </div>
-
-                                    <div
-                                        class="fw-bold fs-6 text-gray-500">CoC</div>
+                                    <div class="fw-bold fs-6 text-gray-500">CoC</div>
                                 </div>
 
-                                <div class="
-                        border border-gray-300 border-dashed
-                        rounded
-                        min-w-125px
-                        py-3
-                        px-4
-                        me-6
-                        mb-3
-                        ">
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                     <div class="d-flex align-items-center">
-                                        <div
-                                            class="fs-2 text-danger fw-bolder">6%</div>
+                                        <div class="fs-2 fw-bolder" [ngClass]="{'text-danger': !propertyAnalysis.isCapRateWithinCriteria, 'text-success': propertyAnalysis.isCapRateWithinCriteria}">
+                                            {{ propertyAnalysis.capRate }}%
+                                        </div>
                                     </div>
-
-                                    <div
-                                        class="fw-bold fs-6 text-gray-500">Cap
-                                        Rate</div>
+                                    <div class="fw-bold fs-6 text-gray-500">Cap Rate</div>
                                 </div>
 
-                                <div class="
-                        border border-gray-300 border-dashed
-                        rounded
-                        min-w-125px
-                        py-3
-                        px-4
-                        me-6
-                        mb-3
-                        ">
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                     <div class="d-flex align-items-center">
-                                        <div
-                                            class="fs-2 text-success fw-bolder">$25,555</div>
+                                        <div class="fs-2 fw-bolder" [ngClass]="{'text-danger': !propertyAnalysis.isCashNeededWithinCriteria, 'text-success': propertyAnalysis.isCashNeededWithinCriteria}">
+                                            {{ propertyAnalysis.cashNeeded | currency:'USD':'symbol':'1.0-0' }}
+                                        </div>
                                     </div>
-
-                                    <div
-                                        class="fw-bold fs-6 text-gray-500">Cash
-                                        Needed</div>
+                                    <div class="fw-bold fs-6 text-gray-500">Cash Needed</div>
                                 </div>
 
-                                <div class="
-                        border border-gray-300 border-dashed
-                        rounded
-                        min-w-125px
-                        py-3
-                        px-4
-                        me-6
-                        mb-3
-                        ">
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                     <div class="d-flex align-items-center">
-                                        <div
-                                            class="fs-2 text-success fw-bolder">$250,000</div>
+                                        <div class="fs-2 fw-bolder" [ngClass]="{'text-danger': !propertyAnalysis.isPurchasePriceWithinCriteria, 'text-success': propertyAnalysis.isPurchasePriceWithinCriteria}">
+                                            {{ propertyAnalysis.purchasePrice | currency:'USD':'symbol':'1.0-0' }}
+                                        </div>
                                     </div>
-
-                                    <div
-                                        class="fw-bold fs-6 text-gray-500">Purchase
-                                        Price</div>
+                                    <div class="fw-bold fs-6 text-gray-500">Purchase Price</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-        </div>
+        </div> -->
     </div>
 
     <!-- Purchase Criteria -->
@@ -185,80 +97,132 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="row mb-7">
-                        <div class="col-8 fw-bold fs-6 text-muted">Purchase Price
-                            <span>
-                                <a
-                                    class="btn btn-sm btn-light-danger fw-bolder ms-2 fs-8 py-1 px-3 criteria-label">
-                                    Failed
-                                </a>
-                            </span>
+                        <div class="col-8 fw-bold fs-6 text-muted">
+                            Purchase Price
+                            <a
+                                [ngClass]="{
+                                    'btn btn-sm fw-bolder ms-2 fs-8 py-1 px-3 criteria-label': true,
+                                    'btn-light-danger': !propertyAnalysis.isPurchasePriceWithinCriteria,
+                                    'btn-light-success': propertyAnalysis.isPurchasePriceWithinCriteria
+                                }">
+                                {{ propertyAnalysis.isPurchasePriceWithinCriteria ? 'Passed' : 'Failed' }}
+                            </a>
                         </div>
-                        <div
-                            class="col fw-bolder fs-6 text-danger text-end">$250,000</div>
+                        <div 
+                            class="col fw-bolder fs-6 text-end"
+                            [ngClass]="{
+                                'text-danger': !propertyAnalysis.isPurchasePriceWithinCriteria,
+                                'text-success': propertyAnalysis.isPurchasePriceWithinCriteria
+                            }">
+                            {{ propertyAnalysis.purchasePrice | currency:'USD':'symbol':'1.0-0' }}
+                        </div>
                     </div>
                     <div class="row mb-7">
-                        <div class="col-8 fw-bold fs-6 text-muted">Total Cash
-                            Needed
-                            <span>
-                                <a
-                                    class="btn btn-sm btn-light-success fw-bolder ms-2 fs-8 py-1 px-3 criteria-label">
-                                    Passed
-                                </a>
-                            </span>
+                        <div class="col-8 fw-bold fs-6 text-muted">Total Cash Needed
+                            <a
+                                [ngClass]="{
+                                    'btn btn-sm fw-bolder ms-2 fs-8 py-1 px-3 criteria-label': true,
+                                    'btn-light-danger': !propertyAnalysis.isCashNeededWithinCriteria,
+                                    'btn-light-success': propertyAnalysis.isCashNeededWithinCriteria
+                                }">
+                                {{ propertyAnalysis.isCashNeededWithinCriteria ? 'Passed' : 'Failed' }}
+                            </a>
                         </div>
-                        <div
-                            class="col fw-bolder fs-6 text-success text-end">$20,000</div>
+                        <div 
+                            class="col fw-bolder fs-6 text-end"
+                            [ngClass]="{
+                                'text-danger': !propertyAnalysis.isCashNeededWithinCriteria,
+                                'text-success': propertyAnalysis.isCashNeededWithinCriteria
+                            }">
+                            {{ propertyAnalysis.cashNeeded | currency:'USD':'symbol':'1.0-0' }}
+                        </div>
                     </div>
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">Cash Flow
-                            <span>
-                                <a
-                                    class="btn btn-sm btn-light-success fw-bolder ms-2 fs-8 py-1 px-3 criteria-label">
-                                    Passed
-                                </a>
-                            </span>
+                            <a
+                                [ngClass]="{
+                                    'btn btn-sm fw-bolder ms-2 fs-8 py-1 px-3 criteria-label': true,
+                                    'btn-light-danger': !propertyAnalysis.isCashFlowWithinCriteria,
+                                    'btn-light-success': propertyAnalysis.isCashFlowWithinCriteria
+                                }">
+                                {{ propertyAnalysis.isCashFlowWithinCriteria ? 'Passed' : 'Failed' }}
+                            </a>
                         </div>
-                        <div
-                            class="col fw-bolder fs-6 text-success text-end">$200</div>
+                        <div 
+                            class="col fw-bolder fs-6 text-end"
+                            [ngClass]="{
+                                'text-danger': !propertyAnalysis.isCashFlowWithinCriteria,
+                                'text-success': propertyAnalysis.isCashFlowWithinCriteria
+                            }">
+                            {{ propertyAnalysis.cashFlow | currency:'USD':'symbol':'1.0-0' }}
+                        </div>
                     </div>
+                    
                 </div>
                 <div class="col-lg-6">
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">Cash on Cash Return
-                            <span>
-                                <a
-                                    class="btn btn-sm btn-light-success fw-bolder ms-2 fs-8 py-1 px-3 criteria-label">
-                                    Passed
-                                </a>
-                            </span>
+                            <a
+                                [ngClass]="{
+                                    'btn btn-sm fw-bolder ms-2 fs-8 py-1 px-3 criteria-label': true,
+                                    'btn-light-danger': !propertyAnalysis.isCashOnCashReturnWithinCriteria,
+                                    'btn-light-success': propertyAnalysis.isCashOnCashReturnWithinCriteria
+                                }">
+                                {{ propertyAnalysis.isCashOnCashReturnWithinCriteria ? 'Passed' : 'Failed' }}
+                            </a>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-success text-end">10%</div>
+                            class="col fw-bolder fs-6 text-end"
+                            [ngClass]="{
+                                'text-danger': !propertyAnalysis.isCashOnCashReturnWithinCriteria,
+                                'text-success': propertyAnalysis.isCashOnCashReturnWithinCriteria
+                            }">
+                            {{ propertyAnalysis.cashOnCashReturn }}%
+                        </div>
                     </div>
+                    
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">Cap Rate
-                            <span>
-                                <a
-                                    class="btn btn-sm btn-light-danger fw-bolder ms-2 fs-8 py-1 px-3 criteria-label">
-                                    Failed
-                                </a>
-                            </span>
+                            <a
+                                [ngClass]="{
+                                    'btn btn-sm fw-bolder ms-2 fs-8 py-1 px-3 criteria-label': true,
+                                    'btn-light-danger': !propertyAnalysis.isCapRateWithinCriteria,
+                                    'btn-light-success': propertyAnalysis.isCapRateWithinCriteria
+                                }">
+                                {{ propertyAnalysis.isCapRateWithinCriteria ? 'Passed' : 'Failed' }}
+                            </a>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-danger text-end">5%</div>
+                            class="col fw-bolder fs-6 text-end"
+                            [ngClass]="{
+                                'text-danger': !propertyAnalysis.isCapRateWithinCriteria,
+                                'text-success': propertyAnalysis.isCapRateWithinCriteria
+                            }">
+                            {{ propertyAnalysis.capRate }}%
+                        </div>
                     </div>
+                    
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">Internal Rate of Return
-                            <span>
-                                <a
-                                    class="btn btn-sm btn-light-danger fw-bolder ms-2 fs-8 py-1 px-3 criteria-label">
-                                    Failed
-                                </a>
-                            </span>
+                            <a
+                                [ngClass]="{
+                                    'btn btn-sm fw-bolder ms-2 fs-8 py-1 px-3 criteria-label': true,
+                                    'btn-light-danger': !propertyAnalysis.isInternalRateOfReturnWithinCriteria,
+                                    'btn-light-success': propertyAnalysis.isInternalRateOfReturnWithinCriteria
+                                }">
+                                {{ propertyAnalysis.isInternalRateOfReturnWithinCriteria ? 'Passed' : 'Failed' }}
+                            </a>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-danger text-end">3%</div>
+                            class="col fw-bolder fs-6 text-end"
+                            [ngClass]="{
+                                'text-danger': !propertyAnalysis.isInternalRateOfReturnWithinCriteria,
+                                'text-success': propertyAnalysis.isInternalRateOfReturnWithinCriteria
+                            }">
+                            {{ propertyAnalysis.internalRateOfReturn }}%
+                        </div>
                     </div>
+                    
                 </div>
             </div>
 
@@ -279,129 +243,85 @@
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
                             Purchase Price
-                            <span>
-                                <i class="bi bi-info-circle ms-1 fs-6"
-                                    style="color: #1B84FF;"
-                                    data-bs-toggle="popover" 
-                                    data-bs-placement="top" 
-                                    data-bs-trigger="hover"
-                                    data-bs-delay='{"show": 0, "hide": 250}'
-                                    title="Purchase Price" data-bs-content="The amount the property is listed for.">
-                                </i>
-                            </span>
+                            <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">$300,000</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.purchasePrice | currency:'USD':'symbol':'1.0-0' }}</div>
                     </div>
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
                             Total Cash Needed
-                            <span><i class="bi bi-info-circle ms-1 fs-6"
-                                    style="color: #1B84FF;"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    title="Example tooltip"></i></span>
+                            <app-info-icon title="Total Cash Needed"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">$555</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.cashNeeded | currency:'USD':'symbol':'1.0-0' }}</div>
                     </div>
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
                             Rental Income
-                            <span><i class="bi bi-info-circle ms-1 fs-6"
-                                    style="color: #1B84FF;"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    title="Example tooltip"></i></span>
+                            <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">$555</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.rentalIncome | currency:'USD':'symbol':'1.0-0' }}</div>
                     </div>
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
                             Expenses
-                            <span><i class="bi bi-info-circle ms-1 fs-6"
-                                    style="color: #1B84FF;"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    title="Example tooltip"></i></span>
+                            <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">$555</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.expenses | currency:'USD':'symbol':'1.0-0' }}</div>
                     </div>
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
                             Cash Flow
-                            <span><i class="bi bi-info-circle ms-1 fs-6"
-                                    style="color: #1B84FF;"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    title="Example tooltip"></i></span>
+                            <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">$555</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.cashFlow | currency:'USD':'symbol':'1.0-0' }}</div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
                             Cash on Cash Return
-                            <span><i class="bi bi-info-circle ms-1 fs-6"
-                                    style="color: #1B84FF;"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    title="Example tooltip"></i></span>
+                            <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">$555</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.cashOnCashReturn }}%</div>
                     </div>
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
                             Cap Rate
-                            <span><i class="bi bi-info-circle ms-1 fs-6"
-                                    style="color: #1B84FF;"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    title="Example tooltip"></i></span>
+                            <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">$555</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.capRate }}%</div>
                     </div>
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
                             Net Operating Income
-                            <span><i class="bi bi-info-circle ms-1 fs-6"
-                                    style="color: #1B84FF;"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    title="Example tooltip"></i></span>
+                            <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">$555</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.netOperatingIncome | currency:'USD':'symbol':'1.0-0' }}
+                        </div>
                     </div>
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
                             Internal Rate of Return
-                            <span><i class="bi bi-info-circle ms-1 fs-6"
-                                    style="color: #1B84FF;"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    title="Example tooltip"></i></span>
+                            <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col-4 fw-bolder fs-6 text-gray-900 text-end">$555</div>
+                            class="col-4 fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.internalRateOfReturn }}%</div>
                     </div>
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
                             Debt Coverage Ratio
-                            <span><i class="bi bi-info-circle ms-1 fs-6"
-                                    style="color: #1B84FF;"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    title="Example tooltip"></i></span>
+                            <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">$555</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.debtCoverageRatio }}%</div>
                     </div>
                 </div>
             </div>
@@ -423,50 +343,34 @@
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
                             Mortgage
-                            <span><i class="bi bi-info-circle ms-1 fs-6"
-                                    style="color: #1B84FF;"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    title="Example tooltip"></i></span>
+                            <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">$300,000</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.mortgage | currency:'USD':'symbol':'1.0-0' }}</div>
                     </div>
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
                             Property Taxes
-                            <span><i class="bi bi-info-circle ms-1 fs-6"
-                                    style="color: #1B84FF;"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    title="Example tooltip"></i></span>
+                            <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">$219</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.propertyTaxes | currency:'USD':'symbol':'1.0-0' }}</div>
                     </div>
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
                             Insurance
-                            <span><i class="bi bi-info-circle ms-1 fs-6"
-                                    style="color: #1B84FF;"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    title="Example tooltip"></i></span>
+                            <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">$219</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.insurance | currency:'USD':'symbol':'1.0-0' }}</div>
                     </div>
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
                             Vacancy
-                            <span><i class="bi bi-info-circle ms-1 fs-6"
-                                    style="color: #1B84FF;"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    title="Example tooltip"></i></span>
+                            <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">$219</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.vacancy | currency:'USD':'symbol':'1.0-0' }}</div>
                     </div>
 
                 </div>
@@ -474,50 +378,34 @@
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
                             Repair & Maintenance
-                            <span><i class="bi bi-info-circle ms-1 fs-6"
-                                    style="color: #1B84FF;"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    title="Example tooltip"></i></span>
+                            <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">$219</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.repairAndMaintenance | currency:'USD':'symbol':'1.0-0' }}</div>
                     </div>
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
                             Capital Expenditure
-                            <span><i class="bi bi-info-circle ms-1 fs-6"
-                                    style="color: #1B84FF;"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    title="Example tooltip"></i></span>
+                            <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">$219</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.capitalExpenditure | currency:'USD':'symbol':'1.0-0' }}</div>
                     </div>
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
                             Management Fees
-                            <span><i class="bi bi-info-circle ms-1 fs-6"
-                                    style="color: #1B84FF;"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    title="Example tooltip"></i></span>
+                            <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">$219</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.managementFees | currency:'USD':'symbol':'1.0-0' }}</div>
                     </div>
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
                             Other Expenses
-                            <span><i class="bi bi-info-circle ms-1 fs-6"
-                                    style="color: #1B84FF;"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    title="Example tooltip"></i></span>
+                            <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">$219</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.otherExpenses | currency:'USD':'symbol':'1.0-0' }}</div>
                     </div>
                 </div>
             </div>
@@ -530,7 +418,7 @@
                     Total Expenses:
                 </div>
                 <div class="col fw-bolder fs-6 text-end"
-                    style="color: #1B84FF;">$4,000</div>
+                    style="color: #1B84FF;">{{ propertyAnalysis.expenses | currency:'USD':'symbol':'1.0-0' }}</div>
             </div>
         </div>
     </div>
@@ -563,18 +451,18 @@
                     <!-- end::Table head -->
                     <!-- begin::Table body -->
                     <tbody>
-                        <tr *ngFor="let rentalComp of rentalComps">
+                        <tr *ngFor="let rentalComp of propertyAnalysis.rentComparables">
                             <td>
                                 <div class="d-flex align-items-center">
                                     <div class="d-flex ps-4 flex-column">
                                         <a
                                             href="#"
                                             class="text-gray-900 fw-bolder text-hover-primary mb-1 fs-6">
-                                            9801 N 11th St, Tampa, FL 33612
+                                            {{ rentalComp.formattedAddress }}
                                         </a>
                                         <span
                                             class="text-muted fw-bold text-muted d-block fs-7">
-                                            2 bds | 2 bths | 2 units
+                                            {{ rentalComp.propertyType }} | {{ rentalComp.bedrooms }} bds | {{ rentalComp.bathrooms }} bths
                                         </span>
                                     </div>
                                 </div>
@@ -583,28 +471,28 @@
                                 <a
                                     href="#"
                                     class="text-gray-900 fw-bolder text-hover-primary d-block mb-1 fs-6">
-                                    $1,500
+                                    {{ rentalComp.price | currency:'USD':'symbol':'1.0-0' }}
                                 </a>
                             </td>
                             <td>
                                 <a
                                     href="#"
                                     class="text-gray-900 fw-bolder text-hover-primary d-block mb-1 fs-6">
-                                    0.3 mi
+                                    {{ rentalComp.distance }} mi
                                 </a>
                             </td>
                             <td>
                                 <a
                                     href="#"
                                     class="text-gray-900 fw-bolder text-hover-primary d-block mb-1 fs-6">
-                                    1952
+                                    {{ rentalComp.yearBuilt }}
                                 </a>
                             </td>
                             <td>
                                 <span>
                                     <a
                                         class="btn btn-sm btn-light-success fw-bolder ms-2 fs-8 py-1 px-3 criteria-label">
-                                        91%
+                                        {{ rentalComp.correlation }} %
                                     </a>
                                 </span>
                             </td>

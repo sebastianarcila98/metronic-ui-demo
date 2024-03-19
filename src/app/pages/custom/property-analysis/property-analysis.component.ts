@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-declare var bootstrap: any;
+import { ActivatedRoute, Router } from '@angular/router';
+import { PropertyAnalysis } from 'src/app/models/PropertyAnalysis';
+import { RentComparable } from 'src/app/models/RentComparable';
 @Component({
   selector: 'app-property-analysis',
   templateUrl: './property-analysis.component.html',
@@ -9,18 +10,86 @@ declare var bootstrap: any;
 export class PropertyAnalysisComponent implements OnInit {
   id: string;
   rentalComps: string[];
+  propertyAnalysis: PropertyAnalysis;
 
-  constructor(private route: ActivatedRoute) { }
+  rentComparableExample: RentComparable = {
+    formattedAddress: "123 Main St, Anytown, AN 12345",
+    propertyType: "Single Family",
+    bedrooms: 3,
+    bathrooms: 2,
+    squareFootage: 1500,
+    lotSize: 5000,
+    yearBuilt: 1980,
+    status: "Active",
+    price: 350000,
+    listedDate: new Date("2022-01-01"),
+    removedDate: null,
+    lastSeenDate: new Date("2022-03-01"),
+    daysOnMarket: 60,
+    distance: 1.5,
+    correlation: 0.85,
+    address: null
+  };
 
-  ngOnInit() {
+  // dummy class
+  
+
+  constructor(private route: ActivatedRoute, private router: Router) { 
     this.rentalComps = ['1', '2', '3', '4', '5', '1', '2', '3', '4', '5'];
     this.route.params.subscribe(params => {
-      this.id = params['id']; // Capturing the dynamic id from the URL
+      this.id = params['id']; 
     });
     console.log(`PropertyAnalysisComponent - id: ${this.id}`)
-    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
-    popoverTriggerList.map(function (popoverTriggerEl) {
-      return new bootstrap.Popover(popoverTriggerEl);
-    });
+
+    const routerState = this.router.getCurrentNavigation()?.extras.state;
+
+    if (routerState && routerState.propertyAnalysis) {
+      this.propertyAnalysis = routerState.propertyAnalysis;
+      console.log('Received propertyAnalysis:', this.propertyAnalysis);
+    } else {
+      console.log('No state passed with navigation. Fetching listing instead.');
+    }
+  }
+
+  ngOnInit() {
+    if (this.propertyAnalysis == null || this.propertyAnalysis == undefined) {
+      console.log('GetPropertyAnalysis() ', this.id);
+
+      this.propertyAnalysis = {
+        id: "1",
+        formattedAddress: "123 Main St, Anytown, AN 12345",
+        propertyType: "Single Family",
+        units: null,
+        bedrooms: 3,
+        bathrooms: 2,
+        squareFootage: 1500,
+        purchasePrice: 300000,
+        isPurchasePriceWithinCriteria: false,
+        cashNeeded: 60000,
+        isCashNeededWithinCriteria: false,
+        cashFlow: 500,
+        isCashFlowWithinCriteria: true,
+        cashOnCashReturn: 8,
+        isCashOnCashReturnWithinCriteria: true,
+        capRate: 5,
+        isCapRateWithinCriteria: false,
+        internalRateOfReturn: 10,
+        isInternalRateOfReturnWithinCriteria: true,
+        rentalIncome: 2000,
+        expenses: 1500,
+        netOperatingIncome: 5000,
+        debtCoverageRatio: 1.2,
+        mortgage: 1000,
+        propertyTaxes: 300,
+        insurance: 200,
+        vacancy: 100,
+        repairAndMaintenance: 150,
+        capitalExpenditure: 100,
+        managementFees: 200,
+        otherExpenses: 50,
+        address: null,
+        rentComparables: [this.rentComparableExample, this.rentComparableExample, this.rentComparableExample, this.rentComparableExample, this.rentComparableExample, this.rentComparableExample, this.rentComparableExample, this.rentComparableExample, this.rentComparableExample, this.rentComparableExample]
+      };
+    }
   }
 }

@@ -8,6 +8,8 @@ import { SavedPropertyListComponent } from './saved-property-list/saved-property
 import { PropertyAnalysisComponent } from './property-analysis/property-analysis.component';
 import { RouterModule } from '@angular/router';
 import { CurrencyFormatDirective } from 'src/app/directives/currency-format.directive';
+import { InfoIconComponent } from './info-icon/info-icon.component';
+import { PropertySummaryCardComponent } from './property-summary-card/property-summary-card.component';
 
 
 
@@ -17,6 +19,8 @@ import { CurrencyFormatDirective } from 'src/app/directives/currency-format.dire
     PropertyListComponent,
     SavedPropertyListComponent,
     PropertyAnalysisComponent,
+    InfoIconComponent,
+    PropertySummaryCardComponent
   ],
   imports: [
     CommonModule,

@@ -1,169 +1,87 @@
-<div class="container" *ngFor="let property of properties">
-    <a [routerLink]="['/properties', 1]">
-        <div class="card card-scale mb-5 mb-xl-10">
-            <div class="card-body pt-9 pb-0">
-                <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
-                    <div class="me-7 mb-4">
-                        <div class="
-                      symbol symbol-100px symbol-lg-160px symbol-fixed
-                      position-relative
-                    ">
-                            <img src="./assets/media/avatars/300-1.jpg"
-                                alt="Metronic" />
-                            <div class="
-                        position-absolute
-                        translate-middle
-                        bottom-0
-                        start-100
-                        mb-6
-                        bg-success
-                        rounded-circle
-                        border border-4 border-white
-                        h-20px
-                        w-20px
-                      "></div>
+<div *ngFor="let propertyAnalysis of propertyAnalyses" class="container">
+    <a (click)="navigateWithState(propertyAnalysis)" class="card card-scale mb-5 mb-xl-10 cursor-pointer">
+        <app-property-summary-card [propertyAnalysis]="propertyAnalysis"></app-property-summary-card>
+
+        <!-- <div class="card-body pt-9 pb-0">
+            <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
+                <div class="me-7 mb-4">
+                    <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
+                        <img src="./assets/media/avatars/300-1.jpg" alt="Property">
+                        <div class="position-absolute translate-middle bottom-0 start-100 mb-6 bg-success rounded-circle border border-4 border-white h-20px w-20px"></div>
+                    </div>
+                </div>
+
+                <div class="flex-grow-1">
+                    <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
+                        <div class="d-flex flex-column">
+                            <div class="d-flex align-items-center mb-2">
+                                <span class="text-gray-800 text-hover-primary fs-2 fw-bolder me-1">{{ propertyAnalysis.formattedAddress }}</span>
+                            </div>
+                            <div class="d-flex flex-wrap fw-bold fs-6 mb-4 pe-2">
+                                <span class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
+                                    {{ propertyAnalysis.propertyType }} | {{ propertyAnalysis.units }} Units | {{ propertyAnalysis.squareFootage }} Sqft
+                                </span>
+                            </div>
+                        </div>
+                        <div class="d-flex my-4">
+                            <a class="btn btn-sm btn-light cursor-pointer">
+                                <app-keenicon name="heart" class="fs-3"></app-keenicon>
+                            </a>
                         </div>
                     </div>
-    
-                    <div class="flex-grow-1">
-                        <div class="
-                      d-flex
-                      justify-content-between
-                      align-items-start
-                      flex-wrap
-                      mb-2
-                    ">
-                            <div class="d-flex flex-column">
-                                <div class="d-flex align-items-center mb-2">
-                                    <a class="
-                            text-gray-800 text-hover-primary
-                            fs-2
-                            fw-bolder
-                            me-1
-                            cursor-pointer
-                          ">
-                                        9801 N 11th St, Tampa, FL 33612
-                                    </a>
+
+                    <div class="d-flex flex-wrap flex-stack">
+                        <div class="d-flex flex-column flex-grow-1 pe-8">
+                            <div class="d-flex flex-wrap">
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="fs-2 fw-bolder" [ngClass]="{'text-danger': !propertyAnalysis.isCashFlowWithinCriteria, 'text-success': propertyAnalysis.isCashFlowWithinCriteria}">
+                                            {{ propertyAnalysis.cashFlow | currency:'USD':'symbol':'1.0-0' }}
+                                        </div>
+                                    </div>
+                                    <div class="fw-bold fs-6 text-gray-500">Cash Flow</div>
                                 </div>
-    
-                                <div
-                                    class="d-flex flex-wrap fw-bold fs-6 mb-4 pe-2">
-                                    <a class="
-                            d-flex
-                            align-items-center
-                            text-gray-500 text-hover-primary
-                            me-5
-                            mb-2
-                            cursor-pointer
-                          ">
-                                        Multi-family | 3 Units | 1092 Sqft
-                                    </a>
+
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="fs-2 fw-bolder" [ngClass]="{'text-danger': !propertyAnalysis.isCashOnCashReturnWithinCriteria, 'text-success': propertyAnalysis.isCashOnCashReturnWithinCriteria}">
+                                            {{ propertyAnalysis.cashOnCashReturn }}%
+                                        </div>
+                                    </div>
+                                    <div class="fw-bold fs-6 text-gray-500">CoC</div>
                                 </div>
-                            </div>
-    
-                            <div class="d-flex my-4">
-                                <a class="btn btn-sm btn-light cursor-pointer">
-                                    <app-keenicon name="heart"
-                                        class="fs-3"></app-keenicon>
-                                </a>
-                            </div>
-                        </div>
-    
-                        <div class="d-flex flex-wrap flex-stack">
-                            <div class="d-flex flex-column flex-grow-1 pe-8">
-                                <div class="d-flex flex-wrap">
-                                    <div class="
-                                    border border-gray-300 border-dashed
-                                    rounded
-                                    min-w-125px
-                                    py-3
-                                    px-4
-                                    me-6
-                                    mb-3
-                                  ">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="fs-2 text-success fw-bolder">$1,200/yr</div>
-                                                </div>
-            
-                                                <div
-                                                    class="fw-bold fs-6 text-gray-500">Cash Flow</div>
-                                            </div>
-    
-                                    <div class="
-                            border border-gray-300 border-dashed
-                            rounded
-                            min-w-125px
-                            py-3
-                            px-4
-                            me-6
-                            mb-3
-                          ">
-                                        <div class="d-flex align-items-center">
-                                            <div class="fs-2 text-success fw-bolder">9%</div>
+
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="fs-2 fw-bolder" [ngClass]="{'text-danger': !propertyAnalysis.isCapRateWithinCriteria, 'text-success': propertyAnalysis.isCapRateWithinCriteria}">
+                                            {{ propertyAnalysis.capRate }}%
                                         </div>
-    
-                                        <div
-                                            class="fw-bold fs-6 text-gray-500">CoC</div>
                                     </div>
-    
-                                    <div class="
-                            border border-gray-300 border-dashed
-                            rounded
-                            min-w-125px
-                            py-3
-                            px-4
-                            me-6
-                            mb-3
-                          ">
-                                        <div class="d-flex align-items-center">
-                                            <div class="fs-2 text-danger fw-bolder">6%</div>
+                                    <div class="fw-bold fs-6 text-gray-500">Cap Rate</div>
+                                </div>
+
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="fs-2 fw-bolder" [ngClass]="{'text-danger': !propertyAnalysis.isCashNeededWithinCriteria, 'text-success': propertyAnalysis.isCashNeededWithinCriteria}">
+                                            {{ propertyAnalysis.cashNeeded | currency:'USD':'symbol':'1.0-0' }}
                                         </div>
-    
-                                        <div
-                                            class="fw-bold fs-6 text-gray-500">Cap Rate</div>
                                     </div>
-    
-                                    <div class="
-                            border border-gray-300 border-dashed
-                            rounded
-                            min-w-125px
-                            py-3
-                            px-4
-                            me-6
-                            mb-3
-                          ">
-                                        <div class="d-flex align-items-center">
-                                            <div class="fs-2 text-success fw-bolder">$25,555</div>
+                                    <div class="fw-bold fs-6 text-gray-500">Cash Needed</div>
+                                </div>
+
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="fs-2 fw-bolder" [ngClass]="{'text-danger': !propertyAnalysis.isPurchasePriceWithinCriteria, 'text-success': propertyAnalysis.isPurchasePriceWithinCriteria}">
+                                            {{ propertyAnalysis.purchasePrice | currency:'USD':'symbol':'1.0-0' }}
                                         </div>
-    
-                                        <div
-                                            class="fw-bold fs-6 text-gray-500">Cash Needed</div>
                                     </div>
-    
-                                    <div class="
-                            border border-gray-300 border-dashed
-                            rounded
-                            min-w-125px
-                            py-3
-                            px-4
-                            me-6
-                            mb-3
-                          ">
-                                        <div class="d-flex align-items-center">
-                                            <div class="fs-2 text-success fw-bolder">$250,000</div>
-                                        </div>
-    
-                                        <div
-                                            class="fw-bold fs-6 text-gray-500">Purchase Price</div>
-                                    </div>
+                                    <div class="fw-bold fs-6 text-gray-500">Purchase Price</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-    
             </div>
-        </div>
+        </div> -->
     </a>
-
 </div>
