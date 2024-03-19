@@ -12,6 +12,6 @@ export class ListsWidget4Component implements OnInit {
   
   ngOnInit(): void {
     this.savedProperties = ['1', '2', '3', '4', '5', '6']
-    console.log('Property Listing component');
+    console.log('ListsWidget4Component - Saved Properties');
   }
 }

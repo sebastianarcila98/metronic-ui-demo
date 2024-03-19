@@ -62,7 +62,7 @@ export class InvestmentCriteriaComponent implements OnInit {
         console.log('propertyCriteriaForm: ', this.propertyCriteriaForm.value);
         console.log('purchaseCriteriaForm: ', this.purchaseCriteriaForm.value);      
       }
-    })
+    });
 
     if (this.isDashboard || !this.isEditing) {
       this.analysisCriteriaForm.disable();

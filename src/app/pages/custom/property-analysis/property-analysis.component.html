@@ -15,11 +15,11 @@
                     <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
                         <div class="d-flex flex-column">
                             <div class="d-flex align-items-center mb-2">
-                                <span class="text-gray-800 text-hover-primary fs-2 fw-bolder me-1">{{ propertyAnalysis.formattedAddress }}</span>
+                                <span class="text-gray-800 text-hover-primary fs-2 fw-bolder me-1">{{ propertyAnalysis?.formattedAddress }}</span>
                             </div>
                             <div class="d-flex flex-wrap fw-bold fs-6 mb-4 pe-2">
                                 <span class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
-                                    {{ propertyAnalysis.propertyType }} | {{ propertyAnalysis.units }} Units | {{ propertyAnalysis.squareFootage }} Sqft
+                                    {{ propertyAnalysis?.propertyType }} | {{ propertyAnalysis?.units }} Units | {{ propertyAnalysis?.squareFootage }} Sqft
                                 </span>
                             </div>
                         </div>
@@ -35,8 +35,8 @@
                             <div class="d-flex flex-wrap">
                                 <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                     <div class="d-flex align-items-center">
-                                        <div class="fs-2 fw-bolder" [ngClass]="{'text-danger': !propertyAnalysis.isCashFlowWithinCriteria, 'text-success': propertyAnalysis.isCashFlowWithinCriteria}">
-                                            {{ propertyAnalysis.cashFlow | currency:'USD':'symbol':'1.0-0' }}
+                                        <div class="fs-2 fw-bolder" [ngClass]="{'text-danger': !propertyAnalysis?.isCashFlowWithinCriteria, 'text-success': propertyAnalysis?.isCashFlowWithinCriteria}">
+                                            {{ propertyAnalysis?.cashFlow | currency:'USD':'symbol':'1.0-0' }}
                                         </div>
                                     </div>
                                     <div class="fw-bold fs-6 text-gray-500">Cash Flow</div>
@@ -44,7 +44,7 @@
 
                                 <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                     <div class="d-flex align-items-center">
-                                        <div class="fs-2 fw-bolder" [ngClass]="{'text-danger': !propertyAnalysis.isCashOnCashReturnWithinCriteria, 'text-success': propertyAnalysis.isCashOnCashReturnWithinCriteria}">
+                                        <div class="fs-2 fw-bolder" [ngClass]="{'text-danger': !propertyAnalysis?.isCashOnCashReturnWithinCriteria, 'text-success': propertyAnalysis?.isCashOnCashReturnWithinCriteria}">
                                             {{ propertyAnalysis.cashOnCashReturn }}%
                                         </div>
                                     </div>
@@ -102,19 +102,19 @@
                             <a
                                 [ngClass]="{
                                     'btn btn-sm fw-bolder ms-2 fs-8 py-1 px-3 criteria-label': true,
-                                    'btn-light-danger': !propertyAnalysis.isPurchasePriceWithinCriteria,
-                                    'btn-light-success': propertyAnalysis.isPurchasePriceWithinCriteria
+                                    'btn-light-danger': !propertyAnalysis?.isPurchasePriceWithinCriteria,
+                                    'btn-light-success': propertyAnalysis?.isPurchasePriceWithinCriteria
                                 }">
-                                {{ propertyAnalysis.isPurchasePriceWithinCriteria ? 'Passed' : 'Failed' }}
+                                {{ propertyAnalysis?.isPurchasePriceWithinCriteria ? 'Passed' : 'Failed' }}
                             </a>
                         </div>
                         <div 
                             class="col fw-bolder fs-6 text-end"
                             [ngClass]="{
-                                'text-danger': !propertyAnalysis.isPurchasePriceWithinCriteria,
-                                'text-success': propertyAnalysis.isPurchasePriceWithinCriteria
+                                'text-danger': !propertyAnalysis?.isPurchasePriceWithinCriteria,
+                                'text-success': propertyAnalysis?.isPurchasePriceWithinCriteria
                             }">
-                            {{ propertyAnalysis.purchasePrice | currency:'USD':'symbol':'1.0-0' }}
+                            {{ propertyAnalysis?.purchasePrice | currency:'USD':'symbol':'1.0-0' }}
                         </div>
                     </div>
                     <div class="row mb-7">
@@ -122,19 +122,19 @@
                             <a
                                 [ngClass]="{
                                     'btn btn-sm fw-bolder ms-2 fs-8 py-1 px-3 criteria-label': true,
-                                    'btn-light-danger': !propertyAnalysis.isCashNeededWithinCriteria,
-                                    'btn-light-success': propertyAnalysis.isCashNeededWithinCriteria
+                                    'btn-light-danger': !propertyAnalysis?.isCashNeededWithinCriteria,
+                                    'btn-light-success': propertyAnalysis?.isCashNeededWithinCriteria
                                 }">
-                                {{ propertyAnalysis.isCashNeededWithinCriteria ? 'Passed' : 'Failed' }}
+                                {{ propertyAnalysis?.isCashNeededWithinCriteria ? 'Passed' : 'Failed' }}
                             </a>
                         </div>
                         <div 
                             class="col fw-bolder fs-6 text-end"
                             [ngClass]="{
-                                'text-danger': !propertyAnalysis.isCashNeededWithinCriteria,
-                                'text-success': propertyAnalysis.isCashNeededWithinCriteria
+                                'text-danger': !propertyAnalysis?.isCashNeededWithinCriteria,
+                                'text-success': propertyAnalysis?.isCashNeededWithinCriteria
                             }">
-                            {{ propertyAnalysis.cashNeeded | currency:'USD':'symbol':'1.0-0' }}
+                            {{ propertyAnalysis?.cashNeeded | currency:'USD':'symbol':'1.0-0' }}
                         </div>
                     </div>
                     <div class="row mb-7">
@@ -142,19 +142,19 @@
                             <a
                                 [ngClass]="{
                                     'btn btn-sm fw-bolder ms-2 fs-8 py-1 px-3 criteria-label': true,
-                                    'btn-light-danger': !propertyAnalysis.isCashFlowWithinCriteria,
-                                    'btn-light-success': propertyAnalysis.isCashFlowWithinCriteria
+                                    'btn-light-danger': !propertyAnalysis?.isCashFlowWithinCriteria,
+                                    'btn-light-success': propertyAnalysis?.isCashFlowWithinCriteria
                                 }">
-                                {{ propertyAnalysis.isCashFlowWithinCriteria ? 'Passed' : 'Failed' }}
+                                {{ propertyAnalysis?.isCashFlowWithinCriteria ? 'Passed' : 'Failed' }}
                             </a>
                         </div>
                         <div 
                             class="col fw-bolder fs-6 text-end"
                             [ngClass]="{
-                                'text-danger': !propertyAnalysis.isCashFlowWithinCriteria,
-                                'text-success': propertyAnalysis.isCashFlowWithinCriteria
+                                'text-danger': !propertyAnalysis?.isCashFlowWithinCriteria,
+                                'text-success': propertyAnalysis?.isCashFlowWithinCriteria
                             }">
-                            {{ propertyAnalysis.cashFlow | currency:'USD':'symbol':'1.0-0' }}
+                            {{ propertyAnalysis?.cashFlow | currency:'USD':'symbol':'1.0-0' }}
                         </div>
                     </div>
                     
@@ -165,19 +165,19 @@
                             <a
                                 [ngClass]="{
                                     'btn btn-sm fw-bolder ms-2 fs-8 py-1 px-3 criteria-label': true,
-                                    'btn-light-danger': !propertyAnalysis.isCashOnCashReturnWithinCriteria,
-                                    'btn-light-success': propertyAnalysis.isCashOnCashReturnWithinCriteria
+                                    'btn-light-danger': !propertyAnalysis?.isCashOnCashReturnWithinCriteria,
+                                    'btn-light-success': propertyAnalysis?.isCashOnCashReturnWithinCriteria
                                 }">
-                                {{ propertyAnalysis.isCashOnCashReturnWithinCriteria ? 'Passed' : 'Failed' }}
+                                {{ propertyAnalysis?.isCashOnCashReturnWithinCriteria ? 'Passed' : 'Failed' }}
                             </a>
                         </div>
                         <div
                             class="col fw-bolder fs-6 text-end"
                             [ngClass]="{
-                                'text-danger': !propertyAnalysis.isCashOnCashReturnWithinCriteria,
-                                'text-success': propertyAnalysis.isCashOnCashReturnWithinCriteria
+                                'text-danger': !propertyAnalysis?.isCashOnCashReturnWithinCriteria,
+                                'text-success': propertyAnalysis?.isCashOnCashReturnWithinCriteria
                             }">
-                            {{ propertyAnalysis.cashOnCashReturn }}%
+                            {{ propertyAnalysis?.cashOnCashReturn }}%
                         </div>
                     </div>
                     
@@ -186,19 +186,19 @@
                             <a
                                 [ngClass]="{
                                     'btn btn-sm fw-bolder ms-2 fs-8 py-1 px-3 criteria-label': true,
-                                    'btn-light-danger': !propertyAnalysis.isCapRateWithinCriteria,
-                                    'btn-light-success': propertyAnalysis.isCapRateWithinCriteria
+                                    'btn-light-danger': !propertyAnalysis?.isCapRateWithinCriteria,
+                                    'btn-light-success': propertyAnalysis?.isCapRateWithinCriteria
                                 }">
-                                {{ propertyAnalysis.isCapRateWithinCriteria ? 'Passed' : 'Failed' }}
+                                {{ propertyAnalysis?.isCapRateWithinCriteria ? 'Passed' : 'Failed' }}
                             </a>
                         </div>
                         <div
                             class="col fw-bolder fs-6 text-end"
                             [ngClass]="{
-                                'text-danger': !propertyAnalysis.isCapRateWithinCriteria,
-                                'text-success': propertyAnalysis.isCapRateWithinCriteria
+                                'text-danger': !propertyAnalysis?.isCapRateWithinCriteria,
+                                'text-success': propertyAnalysis?.isCapRateWithinCriteria
                             }">
-                            {{ propertyAnalysis.capRate }}%
+                            {{ propertyAnalysis?.capRate }}%
                         </div>
                     </div>
                     
@@ -207,19 +207,19 @@
                             <a
                                 [ngClass]="{
                                     'btn btn-sm fw-bolder ms-2 fs-8 py-1 px-3 criteria-label': true,
-                                    'btn-light-danger': !propertyAnalysis.isInternalRateOfReturnWithinCriteria,
-                                    'btn-light-success': propertyAnalysis.isInternalRateOfReturnWithinCriteria
+                                    'btn-light-danger': !propertyAnalysis?.isInternalRateOfReturnWithinCriteria,
+                                    'btn-light-success': propertyAnalysis?.isInternalRateOfReturnWithinCriteria
                                 }">
-                                {{ propertyAnalysis.isInternalRateOfReturnWithinCriteria ? 'Passed' : 'Failed' }}
+                                {{ propertyAnalysis?.isInternalRateOfReturnWithinCriteria ? 'Passed' : 'Failed' }}
                             </a>
                         </div>
                         <div
                             class="col fw-bolder fs-6 text-end"
                             [ngClass]="{
-                                'text-danger': !propertyAnalysis.isInternalRateOfReturnWithinCriteria,
-                                'text-success': propertyAnalysis.isInternalRateOfReturnWithinCriteria
+                                'text-danger': !propertyAnalysis?.isInternalRateOfReturnWithinCriteria,
+                                'text-success': propertyAnalysis?.isInternalRateOfReturnWithinCriteria
                             }">
-                            {{ propertyAnalysis.internalRateOfReturn }}%
+                            {{ propertyAnalysis?.internalRateOfReturn }}%
                         </div>
                     </div>
                     
@@ -246,7 +246,7 @@
                             <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.purchasePrice | currency:'USD':'symbol':'1.0-0' }}</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis?.purchasePrice | currency:'USD':'symbol':'1.0-0' }}</div>
                     </div>
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
@@ -254,7 +254,7 @@
                             <app-info-icon title="Total Cash Needed"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.cashNeeded | currency:'USD':'symbol':'1.0-0' }}</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis?.cashNeeded | currency:'USD':'symbol':'1.0-0' }}</div>
                     </div>
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
@@ -262,7 +262,7 @@
                             <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.rentalIncome | currency:'USD':'symbol':'1.0-0' }}</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis?.rentalIncome | currency:'USD':'symbol':'1.0-0' }}</div>
                     </div>
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
@@ -270,7 +270,7 @@
                             <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.expenses | currency:'USD':'symbol':'1.0-0' }}</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis?.expenses | currency:'USD':'symbol':'1.0-0' }}</div>
                     </div>
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
@@ -278,7 +278,7 @@
                             <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.cashFlow | currency:'USD':'symbol':'1.0-0' }}</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis?.cashFlow | currency:'USD':'symbol':'1.0-0' }}</div>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -288,7 +288,7 @@
                             <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.cashOnCashReturn }}%</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis?.cashOnCashReturn }}%</div>
                     </div>
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
@@ -296,7 +296,7 @@
                             <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.capRate }}%</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis?.capRate }}%</div>
                     </div>
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
@@ -304,7 +304,7 @@
                             <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.netOperatingIncome | currency:'USD':'symbol':'1.0-0' }}
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis?.netOperatingIncome | currency:'USD':'symbol':'1.0-0' }}
                         </div>
                     </div>
                     <div class="row mb-7">
@@ -313,7 +313,7 @@
                             <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col-4 fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.internalRateOfReturn }}%</div>
+                            class="col-4 fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis?.internalRateOfReturn }}%</div>
                     </div>
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
@@ -321,7 +321,7 @@
                             <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.debtCoverageRatio }}%</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis?.debtCoverageRatio }}%</div>
                     </div>
                 </div>
             </div>
@@ -346,7 +346,7 @@
                             <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.mortgage | currency:'USD':'symbol':'1.0-0' }}</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis?.mortgage | currency:'USD':'symbol':'1.0-0' }}</div>
                     </div>
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
@@ -354,7 +354,7 @@
                             <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.propertyTaxes | currency:'USD':'symbol':'1.0-0' }}</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis?.propertyTaxes | currency:'USD':'symbol':'1.0-0' }}</div>
                     </div>
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
@@ -362,7 +362,7 @@
                             <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.insurance | currency:'USD':'symbol':'1.0-0' }}</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis?.insurance | currency:'USD':'symbol':'1.0-0' }}</div>
                     </div>
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
@@ -370,7 +370,7 @@
                             <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.vacancy | currency:'USD':'symbol':'1.0-0' }}</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis?.vacancy | currency:'USD':'symbol':'1.0-0' }}</div>
                     </div>
 
                 </div>
@@ -381,7 +381,7 @@
                             <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.repairAndMaintenance | currency:'USD':'symbol':'1.0-0' }}</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis?.repairAndMaintenance | currency:'USD':'symbol':'1.0-0' }}</div>
                     </div>
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
@@ -389,7 +389,7 @@
                             <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.capitalExpenditure | currency:'USD':'symbol':'1.0-0' }}</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis?.capitalExpenditure | currency:'USD':'symbol':'1.0-0' }}</div>
                     </div>
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
@@ -397,7 +397,7 @@
                             <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.managementFees | currency:'USD':'symbol':'1.0-0' }}</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis?.managementFees | currency:'USD':'symbol':'1.0-0' }}</div>
                     </div>
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
@@ -405,7 +405,7 @@
                             <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis.otherExpenses | currency:'USD':'symbol':'1.0-0' }}</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis?.otherExpenses | currency:'USD':'symbol':'1.0-0' }}</div>
                     </div>
                 </div>
             </div>
@@ -418,7 +418,7 @@
                     Total Expenses:
                 </div>
                 <div class="col fw-bolder fs-6 text-end"
-                    style="color: #1B84FF;">{{ propertyAnalysis.expenses | currency:'USD':'symbol':'1.0-0' }}</div>
+                    style="color: #1B84FF;">{{ propertyAnalysis?.expenses | currency:'USD':'symbol':'1.0-0' }}</div>
             </div>
         </div>
     </div>
@@ -451,7 +451,7 @@
                     <!-- end::Table head -->
                     <!-- begin::Table body -->
                     <tbody>
-                        <tr *ngFor="let rentalComp of propertyAnalysis.rentComparables">
+                        <tr *ngFor="let rentalComp of rentComparables">
                             <td>
                                 <div class="d-flex align-items-center">
                                     <div class="d-flex ps-4 flex-column">
@@ -492,7 +492,7 @@
                                 <span>
                                     <a
                                         class="btn btn-sm btn-light-success fw-bolder ms-2 fs-8 py-1 px-3 criteria-label">
-                                        {{ rentalComp.correlation }} %
+                                        {{ rentalComp.correlation | percent }}
                                     </a>
                                 </span>
                             </td>

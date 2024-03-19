@@ -33,6 +33,7 @@ export interface PropertyAnalysis {
     capitalExpenditure: number | null;
     managementFees: number | null;
     otherExpenses: number | null;
+    isSaved: boolean;
     address: Address | null;
     rentComparables: RentComparable[] | null;
 }
