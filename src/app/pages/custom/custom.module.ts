@@ -10,6 +10,10 @@ import { RouterModule } from '@angular/router';
 import { CurrencyFormatDirective } from 'src/app/directives/currency-format.directive';
 import { InfoIconComponent } from './info-icon/info-icon.component';
 import { PropertySummaryCardComponent } from './property-summary-card/property-summary-card.component';
+import { AnalyticsMixedWidgetComponent } from './widgets/analytics-mixed-widget/analytics-mixed-widget.component';
+import { DataDisplayCardComponent } from './widgets/data-display-card/data-display-card.component';
+import { PropertyAnalysesTableComponent } from './widgets/property-analyses-table/property-analyses-table.component';
+import { SavedPropertiesWidgetComponent } from './widgets/saved-properties-widget/saved-properties-widget.component';
 
 
 
@@ -20,7 +24,11 @@ import { PropertySummaryCardComponent } from './property-summary-card/property-s
     SavedPropertyListComponent,
     PropertyAnalysisComponent,
     InfoIconComponent,
-    PropertySummaryCardComponent
+    PropertySummaryCardComponent,
+    AnalyticsMixedWidgetComponent,
+    DataDisplayCardComponent,
+    PropertyAnalysesTableComponent,
+    SavedPropertiesWidgetComponent
   ],
   imports: [
     CommonModule,
@@ -29,6 +37,6 @@ import { PropertySummaryCardComponent } from './property-summary-card/property-s
     RouterModule,
     CurrencyFormatDirective
   ],
-  exports: [InvestmentCriteriaComponent]
+  exports: [InvestmentCriteriaComponent, AnalyticsMixedWidgetComponent, DataDisplayCardComponent, PropertyAnalysesTableComponent, SavedPropertiesWidgetComponent]
 })
 export class CustomModule { }

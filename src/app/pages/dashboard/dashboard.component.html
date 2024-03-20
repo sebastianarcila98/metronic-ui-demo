@@ -2,26 +2,19 @@
 <div class="row g-5 g-xl-10 mb-5 mb-xl-10">
   <!--begin::Col-->
   <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-3 mb-md-5 mb-xl-10">
-    <app-cards-widget20 cssClass="h-md-50 mb-5 mb-xl-10" img="./assets/media/patterns/vector-1.png" description="Properties Meet Purchase Criteria" color="#F1416C"></app-cards-widget20>
-
-    <app-cards-widget20 cssClass="h-md-50 mb-5 mb-xl-10" description="Analyses Performed This Month" color="rgba(128, 128, 128, 0.75)
-    "></app-cards-widget20>
-
+    <app-data-display-card [amount]="0" img="./assets/media/patterns/vector-1.png" description="Properties Meet Purchase Criteria" color="#F1416C"></app-data-display-card>
+    <app-data-display-card [amount]="11" description="Analyses Performed In The Past Month" color="rgba(128, 128, 128, 0.5)"></app-data-display-card>
   </div>
   <!--end::Col-->
 
   <!--begin::Col-->
-  <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-3 ">
-      <app-mixed-widget1
-        class="card h-100 "
-        color="primary"
-      ></app-mixed-widget1>
+  <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-3">
+    <app-analytics-mixed-widget class="card h-100"></app-analytics-mixed-widget>
   </div>  
   <!--end::Col-->
 
-
   <!--begin::Col-->
-  <app-tables-widget11 class="card col-xxl-6"></app-tables-widget11>
+  <app-property-analyses-table class="card col-xxl-6"></app-property-analyses-table>
   <!--end::Col-->
 </div>
 <!--end::Row-->
@@ -33,7 +26,7 @@
     <app-investment-criteria [isDashboard]="true"></app-investment-criteria>
   </div>
   <div class="col-xl-4">
-    <app-lists-widget4 class="card card-xl-stretch mb-xl-8"></app-lists-widget4>
+    <app-saved-properties-widget class="card card-xl-stretch mb-xl-8"></app-saved-properties-widget>
   </div>
 </div>
 <!-- end::Row -->

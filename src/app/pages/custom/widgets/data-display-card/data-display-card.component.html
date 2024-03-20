@@ -1,0 +1,28 @@
+<!--begin::Card widget 20-->
+<div class="card card-flush bgi-no-repeat bgi-size-contain bgi-position-x-end h-md-50 mb-5 mb-xl-10"
+    [ngClass]="cssClass"
+    [ngStyle]="{'background-color': color, 'background-image': 'url(' + img + ')'}">
+    <!--begin::Header-->
+    <div class="card-header pt-5">
+
+    </div>
+    <!--end::Header-->
+
+    <!--begin::Card body-->
+    <div class="card-body d-flex  pt-0">
+        <!--begin::Progress-->
+        <div class="card-title d-flex flex-column justify-content-between">
+            <!--begin::Amount-->
+            <span class="fs-5hx fw-bold text-white me-2 lh-1 ls-n2">{{ amount }}</span>
+            <!--end::Amount-->
+
+            <!--begin::Subtitle-->
+            <span
+                class="text-white align-items-end opacity-80 pt-1 fw-semibold fs-1">
+                {{description}}
+            </span>
+            <!--end::Progress-->
+        </div>
+        <!--end::Card body-->
+    </div>
+    <!--end::Card widget 20-->

@@ -1,0 +1,51 @@
+<!-- begin::Header-->
+<div class="card-header border-0 pt-5">
+    <h3 class="card-title align-items-start flex-column">
+        <span class="card-label fw-bolder text-gray-900">Saved Properties</span>
+        <!-- <span class="text-muted mt-1 fw-bold fs-7">Latest tech trends</span> -->
+    </h3>
+    <div class="card-toolbar">
+        <a class="btn btn-sm btn-light-primary"
+            [routerLink]="['/properties/saved']">
+            View All
+        </a>
+    </div>
+</div>
+<!-- end::Header-->
+<!-- begin::Body-->
+<div class="card-body pt-5">
+    <div *ngFor="let savedProperty of savedProperties">
+
+        <!-- begin::Item-->
+        <div class="d-flex align-items-sm-center mb-7">
+            <!-- begin::Symbol-->
+            <div class="symbol symbol-50px me-5">
+                <span class="symbol-label">
+                    <img
+                        src="./assets/media/svg/brand-logos/plurk.svg"
+                        class="h-50 align-self-center"
+                        alt />
+                </span>
+            </div>
+            <!-- end::Symbol-->
+            <!-- begin::Section-->
+            <div
+                class="d-flex align-items-center flex-row-fluid flex-wrap pr-2">
+                <div class="flex-grow-1 me-2">
+                    <a href="#"
+                        class="text-gray-800 text-hover-primary fs-6 fw-bolder">
+                        9801 N 11th St
+                    </a>
+                    <span class="text-muted fw-bold d-block fs-7">2 bds | 2 bths
+                        | 2 units</span>
+                </div>
+
+                <span class="badge badge-light fw-bolder my-2">+82$</span>
+            </div>
+            <!-- end::Section-->
+        </div>
+        <!-- end::Item-->
+    </div>
+
+</div>
+<!-- end::Body-->
