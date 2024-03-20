@@ -5,11 +5,11 @@ import { PropertyAnalysisService } from 'src/app/services/property-analysis.serv
 import { UtilityService } from 'src/app/services/utility.service';
 
 @Component({
-  selector: 'app-property-list',
-  templateUrl: './property-list.component.html',
-  styleUrl: './property-list.component.scss'
+  selector: 'app-property-analysis-list',
+  templateUrl: './property-analysis-list.component.html',
+  styleUrl: './property-analysis-list.component.scss'
 })
-export class PropertyListComponent implements OnInit {
+export class PropertyAnalysisListComponent implements OnInit {
   propertyAnalyses: PropertyAnalysis[];
   isLoading: boolean;
 

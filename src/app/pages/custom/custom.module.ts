@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InvestmentCriteriaComponent } from './investment-criteria/investment-criteria.component';
-import { PropertyListComponent } from './property-list/property-list.component';
+import { PropertyAnalysisListComponent } from './property-analysis-list/property-analysis-list.component';
 import { SharedModule } from 'src/app/_metronic/shared/shared.module';
 import { SavedPropertyListComponent } from './saved-property-list/saved-property-list.component';
 import { PropertyAnalysisComponent } from './property-analysis/property-analysis.component';
@@ -20,7 +20,7 @@ import { SavedPropertiesWidgetComponent } from './widgets/saved-properties-widge
 @NgModule({
   declarations: [
     InvestmentCriteriaComponent,
-    PropertyListComponent,
+    PropertyAnalysisListComponent,
     SavedPropertyListComponent,
     PropertyAnalysisComponent,
     InfoIconComponent,
