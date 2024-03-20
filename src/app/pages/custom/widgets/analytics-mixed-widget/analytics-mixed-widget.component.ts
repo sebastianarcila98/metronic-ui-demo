@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Analytics } from 'src/app/models/Analytics';
 
 @Component({
   selector: 'app-analytics-mixed-widget',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './analytics-mixed-widget.component.scss'
 })
 export class AnalyticsMixedWidgetComponent implements OnInit {
+  @Input() analytics: Analytics | undefined;
   
   constructor() {
     console.log('AnalyticsMixedWidgetComponent');

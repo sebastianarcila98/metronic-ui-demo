@@ -14,6 +14,7 @@ import { AnalyticsMixedWidgetComponent } from './widgets/analytics-mixed-widget/
 import { DataDisplayCardComponent } from './widgets/data-display-card/data-display-card.component';
 import { PropertyAnalysesTableComponent } from './widgets/property-analyses-table/property-analyses-table.component';
 import { SavedPropertiesWidgetComponent } from './widgets/saved-properties-widget/saved-properties-widget.component';
+import { CurrencyAbbreviationPipe } from 'src/app/pipes/currency-abbreviation.pipe';
 
 
 
@@ -35,7 +36,8 @@ import { SavedPropertiesWidgetComponent } from './widgets/saved-properties-widge
     ReactiveFormsModule,
     SharedModule,
     RouterModule,
-    CurrencyFormatDirective
+    CurrencyFormatDirective,
+    CurrencyAbbreviationPipe
   ],
   exports: [InvestmentCriteriaComponent, AnalyticsMixedWidgetComponent, DataDisplayCardComponent, PropertyAnalysesTableComponent, SavedPropertiesWidgetComponent]
 })

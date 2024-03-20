@@ -26,8 +26,8 @@
         <!-- end::Heading -->
         <!-- begin::Balance -->
         <div class="d-flex text-center flex-column text-white pt-8">
-            <span class="fw-bolder fs-2x pt-1">1278</span>
-            <span class="fw-bold fs-7">Total Calculations Performed</span>
+            <span class="fw-bolder fs-2x pt-1">{{ analytics?.totalAnalysesPerformed }}</span>
+            <span class="fw-bold fs-7">Total Analyses Performed</span>
         </div>
         <!-- end::Balance -->
     </div>
@@ -72,9 +72,8 @@
                 <!-- end::Title -->
                 <!-- begin::Label -->
                 <div class="d-flex align-items-center">
-                    <div class="fw-bolder fs-5 text-gray-800 pe-1">$2,5b</div>
-                    <app-keenicon name="arrow-up"
-                        class="fs-5 text-success ms-1"></app-keenicon>
+                    <div class="fw-bolder fs-5 text-gray-800 pe-1">{{ analytics?.cashOnCashReturn }}%</div>
+                    <!-- <span class="badge badge-light my-2">+82$</span> -->
                 </div>
                 <!-- end::Label -->
             </div>
@@ -103,9 +102,7 @@
                 <!-- end::Title -->
                 <!-- begin::Label -->
                 <div class="d-flex align-items-center">
-                    <div class="fw-bolder fs-5 text-gray-800 pe-1">$1,7b</div>
-                    <app-keenicon name="category"
-                        class="fs-5 text-danger ms-1"></app-keenicon>
+                    <div class="fw-bolder fs-5 text-gray-800 pe-1">{{ analytics?.cashFlow | currencyAbbreviation }}</div>
                 </div>
                 <!-- end::Label -->
             </div>
@@ -134,9 +131,7 @@
                 <!-- end::Title -->
                 <!-- begin::Label -->
                 <div class="d-flex align-items-center">
-                    <div class="fw-bolder fs-5 text-gray-800 pe-1">$8,8m</div>
-                    <app-keenicon name="arrow-up"
-                        class="fs-5 text-success ms-1"></app-keenicon>
+                    <div class="fw-bolder fs-5 text-gray-800 pe-1">{{ analytics?.capRate }}%</div>
                 </div>
                 <!-- end::Label -->
             </div>
@@ -165,9 +160,7 @@
                 <!-- end::Title -->
                 <!-- begin::Label -->
                 <div class="d-flex align-items-center">
-                    <div class="fw-bolder fs-5 text-gray-800 pe-1">$270m</div>
-                    <app-keenicon name="arrow-down"
-                        class="fs-5 text-danger ms-1"></app-keenicon>
+                    <div class="fw-bolder fs-5 text-gray-800 pe-1">{{ analytics?.cashNeeded | currencyAbbreviation }}</div>
                 </div>
                 <!-- end::Label -->
             </div>

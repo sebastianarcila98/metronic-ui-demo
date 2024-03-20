@@ -80,18 +80,16 @@ export class PropertyAnalysisComponent implements OnInit {
     private utilityService: UtilityService,
     private cdr: ChangeDetectorRef
   ) { 
-    console.log(`PropertyAnalysisComponent - id: ${this.id}`)
     this.route.params.subscribe(params => {
       this.id = params['id']; 
     });
-
+    console.log(`PropertyAnalysisComponent - id: ${this.id}`)
+    
     this.propertyAnalysis = this.getNavigationState();
   }
 
   ngOnInit() {
     if (this.propertyAnalysis == null || this.propertyAnalysis == undefined) {
-      console.log('GetPropertyAnalysis() ', this.id);
-      //getPropertyAnalysis()
       this.propertyAnalysisService.getPropertyAnalysisById('ED8FCF47-66EC-4BED-9ADE-44602830AA65', this.id).subscribe({
         next: (data) => {
           console.log('getAllPropertiesAnalysis response: ', data);
@@ -107,6 +105,7 @@ export class PropertyAnalysisComponent implements OnInit {
         }
       });
     }
+    
     this.propertyAnalysisService.getAllRentComparablesByAnalysisId('ED8FCF47-66EC-4BED-9ADE-44602830AA65', this.id).subscribe({
       next: (data) => {
         console.log('getAllRentComparablesByAnalysisId response: ', data);

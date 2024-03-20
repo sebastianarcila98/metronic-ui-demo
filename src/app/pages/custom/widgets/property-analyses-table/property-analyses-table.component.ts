@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { PropertyAnalysis } from 'src/app/models/PropertyAnalysis';
 
 @Component({
   selector: 'app-property-analyses-table',
@@ -7,6 +8,7 @@ import { Component } from '@angular/core';
 })
 export class PropertyAnalysesTableComponent {
   newProperties = ['1', '2', '3', '4', '5'];
+  @Input() propertyAnalyses: PropertyAnalysis[] | undefined;
 
   constructor() {
     console.log('PropertyAnalysesTableComponent')

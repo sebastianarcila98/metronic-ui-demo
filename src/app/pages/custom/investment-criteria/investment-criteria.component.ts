@@ -13,6 +13,7 @@ import { UtilityService } from 'src/app/services/utility.service';
 })
 export class InvestmentCriteriaComponent implements OnInit {
   @Input() isDashboard: boolean;
+  @Input() investmentCriteria: InvestmentCriteria | undefined;
   purchaseCriteriaForm: FormGroup;
   propertyCriteriaForm: FormGroup;
   analysisCriteriaForm: FormGroup;
@@ -45,24 +46,32 @@ export class InvestmentCriteriaComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.investmentCriteriaService.getInvestmentCriteria('ED8FCF47-66EC-4BED-9ADE-44602830AA65').subscribe({
-      next: (data) => {
-        this.investmentCriteriaId = data.id;
-        this.analysisCriteriaForm.patchValue(data.analysisCriteria);
-        this.propertyCriteriaForm.patchValue(data.propertyCriteria);
-        this.purchaseCriteriaForm.patchValue(data.purchaseCriteria);
-      },
-      error: (error) => {
-        console.error('InvestmentCriteriaComponent Error', error);
-        this.utilityService.showError();
-      },
-      complete: () => {
-        console.log('investmentCriteriaId: ', this.investmentCriteriaId);
-        console.log('analysisCriteriaForm: ', this.analysisCriteriaForm.value);
-        console.log('propertyCriteriaForm: ', this.propertyCriteriaForm.value);
-        console.log('purchaseCriteriaForm: ', this.purchaseCriteriaForm.value);      
-      }
-    });
+    console.log('investmentCriteria: ', this.investmentCriteria)
+    if (this.investmentCriteria == null || this.investmentCriteria == undefined) {
+      this.investmentCriteriaService.getInvestmentCriteria('ED8FCF47-66EC-4BED-9ADE-44602830AA65').subscribe({
+        next: (data) => {
+          this.investmentCriteriaId = data.id;
+          this.analysisCriteriaForm.patchValue(data.analysisCriteria);
+          this.propertyCriteriaForm.patchValue(data.propertyCriteria);
+          this.purchaseCriteriaForm.patchValue(data.purchaseCriteria);
+        },
+        error: (error) => {
+          console.error('InvestmentCriteriaComponent Error', error);
+          this.utilityService.showError();
+        },
+        complete: () => {
+          console.log('investmentCriteriaId: ', this.investmentCriteriaId);
+          console.log('analysisCriteriaForm: ', this.analysisCriteriaForm.value);
+          console.log('propertyCriteriaForm: ', this.propertyCriteriaForm.value);
+          console.log('purchaseCriteriaForm: ', this.purchaseCriteriaForm.value);      
+        }
+      });
+    } else {
+      this.investmentCriteriaId = this.investmentCriteria.id;
+      this.analysisCriteriaForm.patchValue(this.investmentCriteria.analysisCriteria);
+      this.propertyCriteriaForm.patchValue(this.investmentCriteria.propertyCriteria);
+      this.purchaseCriteriaForm.patchValue(this.investmentCriteria.purchaseCriteria);
+    }
 
     if (this.isDashboard || !this.isEditing) {
       this.analysisCriteriaForm.disable();

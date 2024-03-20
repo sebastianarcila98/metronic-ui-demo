@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { PropertyAnalysis } from 'src/app/models/PropertyAnalysis';
 
 @Component({
   selector: 'app-saved-properties-widget',
@@ -6,7 +7,8 @@ import { Component } from '@angular/core';
   styleUrl: './saved-properties-widget.component.scss'
 })
 export class SavedPropertiesWidgetComponent {
-savedProperties= ['1', '2', '3', '4', '5'];
+  @Input() savedProperties: PropertyAnalysis[] | undefined;
+
 
   constructor() {
     console.log('SavedPropertiesWidgetComponent')
