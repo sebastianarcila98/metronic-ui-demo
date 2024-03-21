@@ -27,13 +27,13 @@
                     <th class="min-w-125px">Cash Flow</th>
                     <th class="min-w-150px">Cash Needed</th>
                     <th class="min-w-150px">Purchase Price</th>
-                    <th class="min-w-175px text-end rounded-end"></th>
+                    <th class="min-w-175px rounded-end">Criteria Score</th>
                 </tr>
             </thead>
             <!-- end::Table head -->
             <!-- begin::Table body -->
             <tbody>
-                <tr *ngFor="let propertyAnalysis of propertyAnalyses">
+                <tr class="cursor-pointer" *ngFor="let propertyAnalysis of propertyAnalyses" [routerLink]="['/properties/' + propertyAnalysis.id]">
                     <td>
                         <div class="d-flex align-items-center">
                             <div class="symbol symbol-50px me-5">
@@ -44,69 +44,71 @@
                             </div>
                             <div
                                 class="d-flex justify-content-start flex-column">
-                                <a
-                                    href="#"
+                                <div
                                     class="text-gray-900 fw-bolder text-hover-primary mb-1 fs-6">
-                                    9801 N 11th St, Tampa, FL 33612
-                                </a>
+                                    {{ propertyAnalysis.formattedAddress }}
+                                </div>
                                 <span
                                     class="text-muted fw-bold text-muted d-block fs-7">
-                                    2 bds | 2 bths | 2 units
+                                    {{ propertyAnalysis.propertyType }} | {{ propertyAnalysis.units }} units | {{ propertyAnalysis.squareFootage }} sqft
                                 </span>
                             </div>
                         </div>
                     </td>
                     <td>
-                        <a
-                            href="#"
-                            class="text-gray-900 fw-bolder text-hover-primary d-block mb-1 fs-6">
-                            9%
-                        </a>
+                        <div
+                            class="text-gray-900 fw-bolder d-block mb-1 fs-6">
+                            {{ propertyAnalysis.cashOnCashReturn }}%
+                        </div>
                         <!-- <span class="text-muted fw-bold text-muted d-block fs-7">Paid</span> -->
                     </td>
                     <td>
-                        <a
-                            href="#"
-                            class="text-gray-900 fw-bolder text-hover-primary d-block mb-1 fs-6">
-                            10%
-                        </a>
+                        <div
+                            class="text-gray-900 fw-bolder d-block mb-1 fs-6">
+                            {{ propertyAnalysis.capRate }}%
+                        </div>
                         <!-- <span class="text-muted fw-bold text-muted d-block fs-7"
                 >Rejected</span
               > -->
                     </td>
                     <td>
-                        <a
-                            href="#"
-                            class="text-gray-900 fw-bolder text-hover-primary d-block mb-1 fs-6">
-                            $200/mo
-                        </a>
+                        <div
+                            class="text-gray-900 fw-bolder d-block mb-1 fs-6">
+                            {{ propertyAnalysis.cashFlow | currency:'USD':'symbol':'1.0-0' }}/mo
+                        </div>
                         <!-- <span class="text-muted fw-bold text-muted d-block fs-7"
                 >Insurance</span
               > -->
                     </td>
                     <td>
-                        <a
-                            href="#"
-                            class="text-gray-900 fw-bolder text-hover-primary d-block mb-1 fs-6">
-                            $25,555
-                        </a>
+                        <div
+                            class="text-gray-900 fw-bolder d-block mb-1 fs-6">
+                            {{ propertyAnalysis.cashNeeded | currency:'USD':'symbol':'1.0-0' }}
+                        </div>
                         <!-- <span class="text-muted fw-bold text-muted d-block fs-7"
                   >Insurance</span
                 > -->
                     </td>
                     <td>
-                        <a
-                            href="#"
-                            class="text-gray-900 fw-bolder text-hover-primary d-block mb-1 fs-6">
-                            $255,555
-                        </a>
+                        <div
+                            class="text-gray-900 fw-bolder d-block mb-1 fs-6">
+                            {{ propertyAnalysis.purchasePrice | currency:'USD':'symbol':'1.0-0' }}
+                        </div>
                         <!-- <span class="text-muted fw-bold text-muted d-block fs-7"
                 >Insurance</span
               > -->
                     </td>
                     <td>
-                        <span
-                            class="badge badge-light-primary fs-7 fw-bold">Approved</span>
+                        <span>
+                            <div class="btn btn-sm btn-light-success fw-bolder ms-2 fs-8 py-1 px-3 criteria-label"
+                                [ngClass]="{
+                                    'btn-light-success': propertyAnalysis.purchaseCriteriaScore >= 85,
+                                    'btn-light-warning': propertyAnalysis.purchaseCriteriaScore >= 70 && propertyAnalysis.purchaseCriteriaScore < 85,
+                                    'btn-light-danger': propertyAnalysis.purchaseCriteriaScore < 70
+                                }">
+                                {{ propertyAnalysis.purchaseCriteriaScore }}%
+                            </div>
+                        </span>
                     </td>
                 </tr>
             </tbody>

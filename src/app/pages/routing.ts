@@ -7,7 +7,7 @@ import { PropertyAnalysisComponent } from './custom/property-analysis/property-a
 const Routing: Routes = [
   {
     path: 'dashboard',
-    loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+    loadChildren: () => import('./custom/custom.module').then((m) => m.CustomModule),
     data: { layout: 'light-sidebar' },
   },
   {

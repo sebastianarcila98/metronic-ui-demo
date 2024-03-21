@@ -490,10 +490,14 @@
                             </td>
                             <td>
                                 <span>
-                                    <a
-                                        class="btn btn-sm btn-light-success fw-bolder ms-2 fs-8 py-1 px-3 criteria-label">
+                                    <div class="btn btn-sm btn-light-success fw-bolder ms-2 fs-8 py-1 px-3 criteria-label"
+                                        [ngClass]="{
+                                            'btn-light-success': rentalComp.correlation >= 0.85,
+                                            'btn-light-warning': rentalComp.correlation >= 0.70 && rentalComp.correlation < 0.85,
+                                            'btn-light-danger': rentalComp.correlation < 0.70
+                                        }">
                                         {{ rentalComp.correlation | percent }}
-                                    </a>
+                                    </div>
                                 </span>
                             </td>
                         </tr>

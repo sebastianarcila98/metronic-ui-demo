@@ -1,0 +1,48 @@
+<!--begin::Row-->
+<div class="row g-5 g-xl-10 mb-5 mb-xl-10"
+    *ngIf="userService.user$ | async as user">
+    <!--begin::Col-->
+    <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-3 mb-md-5 mb-xl-10">
+        <app-data-display-card [amount]="user.numOfPropertiesMeetingCriteria"
+            img="./assets/media/patterns/vector-1.png"
+            description="Properties Meet Purchase Criteria"
+            color="#F1416C"></app-data-display-card>
+        <app-data-display-card [amount]="user.numOfAnalysesThisYear" description="Analyses Performed This Year"
+            color="rgba(128, 128, 128, 0.5)"></app-data-display-card>
+    </div>
+    <!--end::Col-->
+
+    <!--begin::Col-->
+    <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-3">
+        <app-analytics-mixed-widget [analytics]="user?.analytics"
+            class="card h-100"></app-analytics-mixed-widget>
+    </div>
+    <!--end::Col-->
+
+    <!--begin::Col-->
+    <app-property-analyses-table [propertyAnalyses]="user?.propertyAnalyses"
+        class="card col-xxl-6"></app-property-analyses-table>
+    <!--end::Col-->
+</div>
+<!--end::Row-->
+
+<!-- begin::Row -->
+<div class="row gy-5 gx-xl-10"  *ngIf="userService.user$ | async as user">
+    <div class="col-xl-8">
+        <app-investment-criteria [isDashboard]="true"
+            [investmentCriteria]="user?.investmentCriteria"></app-investment-criteria>
+    </div>
+    <div class="col-xl-4">
+        <app-saved-properties-widget [savedProperties]="user?.savedProperties"
+            class="card card-xl-stretch mb-xl-8"></app-saved-properties-widget>
+    </div>
+</div>
+<!-- end::Row -->
+
+<!-- begin:: Modal example -->
+<!-- <app-modal #modal [modalConfig]="modalConfig">
+    Modal body html
+  </app-modal>
+  <button class="btn btn-primary" (click)="openModal()">Open modal</button> -->
+<!-- Note: Don't forget import ModalsModule (from _metronic/partials) into your module -->
+<!-- end:: Modal example -->

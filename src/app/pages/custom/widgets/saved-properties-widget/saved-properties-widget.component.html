@@ -17,7 +17,7 @@
     <div *ngFor="let savedProperty of savedProperties">
 
         <!-- begin::Item-->
-        <div class="d-flex align-items-sm-center mb-7">
+        <div class="d-flex align-items-sm-center mb-7 cursor-pointer" [routerLink]="['/properties/' + savedProperty.id]">
             <!-- begin::Symbol-->
             <div class="symbol symbol-50px me-5">
                 <span class="symbol-label">
@@ -32,15 +32,22 @@
             <div
                 class="d-flex align-items-center flex-row-fluid flex-wrap pr-2">
                 <div class="flex-grow-1 me-2">
-                    <a href="#"
+                    <a
                         class="text-gray-800 text-hover-primary fs-6 fw-bolder">
-                        9801 N 11th St
+                        {{ savedProperty.formattedAddress | shortAddress }}
                     </a>
-                    <span class="text-muted fw-bold d-block fs-7">2 bds | 2 bths
-                        | 2 units</span>
+                    <span class="text-muted fw-bold d-block fs-7">{{savedProperty.propertyType}} | {{ savedProperty.units }} units</span>
                 </div>
-
-                <span class="badge badge-light fw-bolder my-2">+82$</span>
+                <span>
+                    <div class="btn btn-sm btn-light-success fw-bolder ms-2 fs-8 py-1 px-3 criteria-label"
+                        [ngClass]="{
+                            'btn-light-success': savedProperty.purchaseCriteriaScore >= 85,
+                            'btn-light-warning': savedProperty.purchaseCriteriaScore >= 70 && savedProperty.purchaseCriteriaScore < 85,
+                            'btn-light-danger': savedProperty.purchaseCriteriaScore < 70
+                        }">
+                        {{ savedProperty.purchaseCriteriaScore }}%
+                    </div>
+                </span>
             </div>
             <!-- end::Section-->
         </div>

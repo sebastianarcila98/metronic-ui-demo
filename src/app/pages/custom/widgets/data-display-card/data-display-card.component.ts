@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { User } from 'src/app/models/User';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-data-display-card',
@@ -10,18 +12,16 @@ export class DataDisplayCardComponent implements OnInit {
   @Input() description: string = '';
   @Input() color: string = '';
   @Input() img: string = '';
-  @Input() amount: number | undefined;
-
-  constructor() {
-    console.log('DataDisplayCardComponent - amount: ', this.amount);
-
+  @Input() amount: number;
+  
+  constructor(
+    public userService: UserService,
+    ) {
+      console.log('DataDisplayCardComponent');
+    
   }
   ngOnInit(): void {
-    console.log('DataDisplayCardComponent - amount: ', this.amount);
 
   }
 
-  ngAfterViewInit(): void {
-    console.log('DataDisplayCardComponent - amount: ', this.amount);
-  }
 }

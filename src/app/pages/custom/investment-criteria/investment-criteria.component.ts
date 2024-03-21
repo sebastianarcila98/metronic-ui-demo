@@ -38,7 +38,7 @@ export class InvestmentCriteriaComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(params => {
       if (params['edit'] === 'true') {
         this.isEditing = true;
-        this.router.navigate(['/investment-criteria']);
+        this.router.navigate(['/investment-criteria']); // removes ?edit=true from url which was causing form to be in edit mode even after refreshing
       }
     });
 

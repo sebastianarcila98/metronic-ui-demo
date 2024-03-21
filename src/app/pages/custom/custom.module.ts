@@ -15,6 +15,8 @@ import { DataDisplayCardComponent } from './widgets/data-display-card/data-displ
 import { PropertyAnalysesTableComponent } from './widgets/property-analyses-table/property-analyses-table.component';
 import { SavedPropertiesWidgetComponent } from './widgets/saved-properties-widget/saved-properties-widget.component';
 import { CurrencyAbbreviationPipe } from 'src/app/pipes/currency-abbreviation.pipe';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ShortAddressPipe } from 'src/app/pipes/short-address.pipe';
 
 
 
@@ -29,7 +31,8 @@ import { CurrencyAbbreviationPipe } from 'src/app/pipes/currency-abbreviation.pi
     AnalyticsMixedWidgetComponent,
     DataDisplayCardComponent,
     PropertyAnalysesTableComponent,
-    SavedPropertiesWidgetComponent
+    SavedPropertiesWidgetComponent,
+    DashboardComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +40,14 @@ import { CurrencyAbbreviationPipe } from 'src/app/pipes/currency-abbreviation.pi
     SharedModule,
     RouterModule,
     CurrencyFormatDirective,
-    CurrencyAbbreviationPipe
+    CurrencyAbbreviationPipe,
+    ShortAddressPipe,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: DashboardComponent,
+      },
+    ]),
   ],
   exports: [InvestmentCriteriaComponent, AnalyticsMixedWidgetComponent, DataDisplayCardComponent, PropertyAnalysesTableComponent, SavedPropertiesWidgetComponent]
 })

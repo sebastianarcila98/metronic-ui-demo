@@ -1,9 +1,9 @@
 <!--begin::Row-->
-<div class="row g-5 g-xl-10 mb-5 mb-xl-10">
+<div class="row g-5 g-xl-10 mb-5 mb-xl-10" *ngIf="userService.user$ | async as user">
   <!--begin::Col-->
   <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-3 mb-md-5 mb-xl-10">
     <app-data-display-card [amount]="user?.numOfPropertiesMeetingCriteria" img="./assets/media/patterns/vector-1.png" description="Properties Meet Purchase Criteria" color="#F1416C"></app-data-display-card>
-    <app-data-display-card [amount]="user?.numOfAnalysesThisYear" description="Analyses Performed This Year" color="rgba(128, 128, 128, 0.5)"></app-data-display-card>
+    <app-data-display-card description="Analyses Performed This Year" color="rgba(128, 128, 128, 0.5)"></app-data-display-card>
   </div>
   <!--end::Col-->
 
