@@ -262,7 +262,7 @@
                             <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis?.rentalIncome | currency:'USD':'symbol':'1.0-0' }}</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis?.grossScheduledIncome | currency:'USD':'symbol':'1.0-0' }}</div>
                     </div>
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
@@ -270,7 +270,7 @@
                             <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div
-                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis?.expenses | currency:'USD':'symbol':'1.0-0' }}</div>
+                            class="col fw-bolder fs-6 text-gray-900 text-end">{{ propertyAnalysis?.totalExpenses | currency:'USD':'symbol':'1.0-0' }}</div>
                     </div>
                     <div class="row mb-7">
                         <div class="col-8 fw-bold fs-6 text-muted">
@@ -418,7 +418,7 @@
                     Total Expenses:
                 </div>
                 <div class="col fw-bolder fs-6 text-end"
-                    style="color: #1B84FF;">{{ propertyAnalysis?.expenses | currency:'USD':'symbol':'1.0-0' }}</div>
+                    style="color: #1B84FF;">{{ propertyAnalysis?.totalExpenses | currency:'USD':'symbol':'1.0-0' }}</div>
             </div>
         </div>
     </div>

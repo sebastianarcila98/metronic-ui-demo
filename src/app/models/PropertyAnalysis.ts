@@ -21,8 +21,10 @@ export interface PropertyAnalysis {
     isCapRateWithinCriteria: boolean | null;
     internalRateOfReturn: number | null;
     isInternalRateOfReturnWithinCriteria: boolean | null;
-    rentalIncome: number | null;
-    expenses: number | null;
+    grossScheduledIncome: number | null;
+    grossOperatingIncome: number | null;
+    operatingExpense: number | null;
+    totalExpenses: number | null;
     netOperatingIncome: number | null;
     debtCoverageRatio: number | null;
     mortgage: number | null;
