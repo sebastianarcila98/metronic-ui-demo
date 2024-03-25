@@ -36,7 +36,8 @@ export interface PropertyAnalysis {
     managementFees: number | null;
     otherExpenses: number | null;
     isSaved: boolean;
-    purchaseCriteriaScore: number;
+    purchaseCriteriaScore: number | null;
+    meetsCriteria: boolean;
     address: Address | null;
     rentComparables: RentComparable[] | null;
 }

@@ -12,7 +12,7 @@ import { UtilityService } from 'src/app/services/utility.service';
 export class PropertyAnalysisComponent implements OnInit {
   id: string;
   propertyAnalysis: PropertyAnalysis | undefined;
-  rentComparables: RentComparable[];
+  rentComparables: RentComparable[] | undefined | null;
 
   // this.propertyAnalysisExample: PropertyAnalysis = {
       //   id: "1",
@@ -109,7 +109,7 @@ export class PropertyAnalysisComponent implements OnInit {
     this.propertyAnalysisService.getAllRentComparablesByAnalysisId('ED8FCF47-66EC-4BED-9ADE-44602830AA65', this.id).subscribe({
       next: (data) => {
         console.log('getAllRentComparablesByAnalysisId response: ', data);
-        this.rentComparables = data;
+        this.rentComparables = data.rentComparables;
         this.cdr.detectChanges();
       },
       error: (error) => {

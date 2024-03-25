@@ -110,6 +110,7 @@ propertyAnalysis: PropertyAnalysis = {
     otherExpenses: 50,
     isSaved: false,
     purchaseCriteriaScore: 50,
+    meetsCriteria: true,
     address: null,
     rentComparables: null,
   };
