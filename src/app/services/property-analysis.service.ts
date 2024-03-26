@@ -24,8 +24,8 @@ export class PropertyAnalysisService {
     return this.httpClient.get<PropertyAnalysis[]>(`${environment.apiUrl}/${userId}/property-analysis/all-saved-properties`);
   }
 
-  getAllRentComparablesByAnalysisId(userId: string, id: string): Observable<PropertyAnalysis> {
-    return this.httpClient.get<PropertyAnalysis>(`${environment.apiUrl}/${userId}/property-analysis/${id}/all-rent-comparables`);
+  getAllRentComparablesByAnalysisId(userId: string, id: string): Observable<RentComparable[]> {
+    return this.httpClient.get<RentComparable[]>(`${environment.apiUrl}/${userId}/property-analysis/${id}/all-rent-comparables`);
   }
 
   toggleSavePropertyAnalysisById(userId: string, id: string): Observable<void> {

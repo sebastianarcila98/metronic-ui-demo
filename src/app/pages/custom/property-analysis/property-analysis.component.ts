@@ -109,7 +109,7 @@ export class PropertyAnalysisComponent implements OnInit {
     this.propertyAnalysisService.getAllRentComparablesByAnalysisId('ED8FCF47-66EC-4BED-9ADE-44602830AA65', this.id).subscribe({
       next: (data) => {
         console.log('getAllRentComparablesByAnalysisId response: ', data);
-        this.rentComparables = data.rentComparables;
+        this.rentComparables = data;
         this.cdr.detectChanges();
       },
       error: (error) => {
