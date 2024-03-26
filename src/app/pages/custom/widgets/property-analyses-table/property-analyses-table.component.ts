@@ -7,10 +7,13 @@ import { PropertyAnalysis } from 'src/app/models/PropertyAnalysis';
   styleUrl: './property-analyses-table.component.scss'
 })
 export class PropertyAnalysesTableComponent {
-  newProperties = ['1', '2', '3', '4', '5'];
   @Input() propertyAnalyses: PropertyAnalysis[] | undefined;
 
   constructor() {
     console.log('PropertyAnalysesTableComponent')
+  }
+
+  get firstFiveProperties() {
+    return this.propertyAnalyses?.slice(0, 5);
   }
 }

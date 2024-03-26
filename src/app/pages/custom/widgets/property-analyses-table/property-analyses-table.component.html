@@ -34,7 +34,7 @@
                 <!-- end::Table head -->
                 <!-- begin::Table body -->
                 <tbody>
-                    <tr class="cursor-pointer" *ngFor="let propertyAnalysis of propertyAnalyses" [routerLink]="['/properties/' + propertyAnalysis.id]">
+                    <tr class="cursor-pointer" *ngFor="let propertyAnalysis of firstFiveProperties" [routerLink]="['/properties/' + propertyAnalysis.id]">
                         <td>
                             <div class="d-flex align-items-center">
                                 <div class="symbol symbol-50px me-5">

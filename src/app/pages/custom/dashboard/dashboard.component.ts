@@ -145,8 +145,6 @@ propertyAnalysis: PropertyAnalysis = {
       next: (data) => {
         console.log('getUserDashboardInfo response: ', data);
         this.userService.updateUser(data);
-        // this.user = data;
-        // this.cdr.detectChanges();
       },
       error: (error) => {
         console.error('getUserDashboardInfo Error', error);

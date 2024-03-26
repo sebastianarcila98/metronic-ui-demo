@@ -15,7 +15,7 @@
 <!-- begin::Body-->
 <div class="card-body pt-5">
     <ng-container *ngIf="savedProperties && savedProperties.length > 0; else noSavedProperties">
-        <div *ngFor="let savedProperty of savedProperties">
+        <div *ngFor="let savedProperty of firstSevenProperties">
     
             <!-- begin::Item-->
             <div class="d-flex align-items-sm-center mb-7 cursor-pointer" [routerLink]="['/properties/' + savedProperty.id]">
