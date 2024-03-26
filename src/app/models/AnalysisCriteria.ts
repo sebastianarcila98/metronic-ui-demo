@@ -10,6 +10,7 @@ export interface AnalysisCriteria {
     capitalExpenditure: number;
     managementFees: number;
     otherExpenses: number;
+    propertyTax: number;
     annualAppreciation: number;
     annualIncomeGrowth: number;
     annualExpenseGrowth: number;

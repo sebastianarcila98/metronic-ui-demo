@@ -93,6 +93,7 @@ export class InvestmentCriteriaComponent implements OnInit {
       capitalExpenditure: [null, [Validators.required]],
       managementFees: [null, [Validators.required]],
       otherExpenses: [null],
+      propertyTax: [null, [Validators.required]],
       annualAppreciation: [null, [Validators.required]],
       annualIncomeGrowth: [null, [Validators.required]],
       annualExpenseGrowth: [null, [Validators.required]],

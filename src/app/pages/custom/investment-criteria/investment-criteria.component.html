@@ -350,6 +350,30 @@
 
           <div class="row mb-10">
             <div class="col-md-6">
+              <label class="form-label required fw-bold">Property Tax</label
+              >
+              <div class="input-group">
+                <input
+                  name="propertyTax"
+                  class="form-control form-control-lg form-control-solid"
+                  formControlName="propertyTax"
+                  appCurrencyFormat
+                  type="text"
+                  [ngClass]="{'input-editing': isEditing, 'input-non-editing': !isEditing}"
+                />
+                <span class="text-addon">Yearly</span>
+              </div>
+              <div
+                class="fv-plugins-message-container invalid-feedback"
+                *ngIf="
+                  analysisCriteriaForm.get('propertyTax')?.hasError('required') &&
+                  analysisCriteriaForm.get('propertyTax')?.touched
+                "
+              >
+                This field is required
+              </div>
+            </div>
+            <div class="col-md-6">
               <label class="form-label fw-bold">Other Expenses</label
               >
               <div class="input-group">
