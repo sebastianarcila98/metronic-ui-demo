@@ -35,7 +35,7 @@
                                 'text-success': propertyAnalysis?.isPurchasePriceWithinCriteria,
                                 'text-muted': propertyAnalysis?.isPurchasePriceWithinCriteria == null
                             }">
-                            {{ (propertyAnalysis?.purchasePrice | currency:'USD':'symbol':'1.0-0') || 'n/a' }}
+                            {{ propertyAnalysis?.isPurchasePriceWithinCriteria !== null ? (propertyAnalysis?.purchasePrice | currency:'USD':'symbol':'1.0-0') : 'n/a' }}
                         </div>
                     </div>
                     <div class="row mb-7">
@@ -57,7 +57,7 @@
                                 'text-success': propertyAnalysis?.isCashNeededWithinCriteria,
                                 'text-muted': propertyAnalysis?.isCashNeededWithinCriteria == null
                             }">
-                            {{ (propertyAnalysis?.cashNeeded | currency:'USD':'symbol':'1.0-0') || 'n/a' }}
+                            {{ propertyAnalysis?.isCashNeededWithinCriteria !== null ? (propertyAnalysis?.cashNeeded | currency:'USD':'symbol':'1.0-0') : 'n/a' }}
                         </div>
                     </div>
                     <div class="row mb-7">
@@ -79,7 +79,7 @@
                                 'text-success': propertyAnalysis?.isCashFlowWithinCriteria,
                                 'text-muted': propertyAnalysis?.isCashFlowWithinCriteria == null
                             }">
-                            {{ (propertyAnalysis?.cashFlow | currency:'USD':'symbol':'1.0-0') || 'n/a' }}
+                            {{ propertyAnalysis?.isCashFlowWithinCriteria !== null ? (propertyAnalysis?.cashFlow | currency:'USD':'symbol':'1.0-0') : 'n/a' }}
                         </div>
                     </div>
                 </div>
@@ -104,7 +104,7 @@
                                 'text-success': propertyAnalysis?.isCashOnCashReturnWithinCriteria
                             }">
                             <span>
-                                {{ propertyAnalysis?.cashOnCashReturn ? (propertyAnalysis?.cashOnCashReturn + '%') : 'n/a' }}
+                                {{ propertyAnalysis?.cashOnCashReturn !== null ? (propertyAnalysis?.cashOnCashReturn + '%') : 'n/a' }}
                             </span>
                         </div>
                     </div>
@@ -128,7 +128,7 @@
                                 'text-success': propertyAnalysis?.isCapRateWithinCriteria,
                                 'text-muted': propertyAnalysis?.isCapRateWithinCriteria == null
                             }">
-                            {{ propertyAnalysis?.capRate ? (propertyAnalysis?.capRate + '%') : 'n/a' }}
+                            {{ propertyAnalysis?.capRate !== null ? (propertyAnalysis?.capRate + '%') : 'n/a' }}
                         </div>
                     </div>
                     
@@ -151,7 +151,7 @@
                                 'text-success': propertyAnalysis?.isInternalRateOfReturnWithinCriteria,
                                 'text-muted': propertyAnalysis?.isInternalRateOfReturnWithinCriteria == null
                             }">
-                            {{ propertyAnalysis?.internalRateOfReturn ? (propertyAnalysis?.internalRateOfReturn + '%') : 'n/a' }}
+                            {{ propertyAnalysis?.internalRateOfReturn !== null ? (propertyAnalysis?.internalRateOfReturn + '%') : 'n/a' }}
                         </div>
                     </div>
                     
@@ -178,8 +178,8 @@
                             <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div class="col fw-bold fs-6 text-end" 
-                            [ngClass]="{'text-muted': propertyAnalysis?.purchasePrice == null, 'text-gray-900': propertyAnalysis?.purchasePrice != null}">
-                            {{ (propertyAnalysis?.purchasePrice | currency:'USD':'symbol':'1.0-0') || 'n/a' }}
+                            [ngClass]="{'text-muted': !propertyAnalysis?.purchasePrice, 'text-gray-900': propertyAnalysis?.purchasePrice}">
+                            {{ propertyAnalysis?.purchasePrice !== null ? (propertyAnalysis?.purchasePrice | currency:'USD':'symbol':'1.0-0') : 'n/a' }}
                         </div>
                     </div>
                     <div class="row mb-7">
@@ -188,8 +188,8 @@
                             <app-info-icon title="Total Cash Needed"></app-info-icon>
                         </div>
                         <div class="col fw-bold fs-6 text-end" 
-                            [ngClass]="{'text-muted': propertyAnalysis?.cashNeeded == null, 'text-gray-900': propertyAnalysis?.cashNeeded != null}">
-                            {{ (propertyAnalysis?.cashNeeded | currency:'USD':'symbol':'1.0-0') || 'n/a' }}
+                            [ngClass]="{'text-muted': !propertyAnalysis?.cashNeeded, 'text-gray-900': propertyAnalysis?.cashNeeded}">
+                            {{ propertyAnalysis?.cashNeeded !== null ? (propertyAnalysis?.cashNeeded | currency:'USD':'symbol':'1.0-0') : 'n/a' }}
                         </div>
                     </div>
                     <div class="row mb-7">
@@ -198,8 +198,8 @@
                             <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div class="col fw-bold fs-6 text-end" 
-                            [ngClass]="{'text-muted': propertyAnalysis?.grossScheduledIncome == null, 'text-gray-900': propertyAnalysis?.grossScheduledIncome != null}">
-                            {{ (propertyAnalysis?.grossScheduledIncome | currency:'USD':'symbol':'1.0-0') || 'n/a' }}
+                            [ngClass]="{'text-muted': !propertyAnalysis?.grossScheduledIncome, 'text-gray-900': propertyAnalysis?.grossScheduledIncome}">
+                            {{ propertyAnalysis?.grossScheduledIncome !== null ? (propertyAnalysis?.grossScheduledIncome | currency:'USD':'symbol':'1.0-0') : 'n/a' }}
                         </div>
                     </div>
                     <div class="row mb-7">
@@ -208,8 +208,8 @@
                             <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div class="col fw-bold fs-6 text-end" 
-                            [ngClass]="{'text-muted': propertyAnalysis?.totalExpenses == null, 'text-gray-900': propertyAnalysis?.totalExpenses != null}">
-                            {{ (propertyAnalysis?.totalExpenses | currency:'USD':'symbol':'1.0-0') || 'n/a' }}
+                            [ngClass]="{'text-muted': !propertyAnalysis?.totalExpenses, 'text-gray-900': propertyAnalysis?.totalExpenses}">
+                            {{ propertyAnalysis?.totalExpenses !== null ? (propertyAnalysis?.totalExpenses | currency:'USD':'symbol':'1.0-0') : 'n/a' }}
                         </div>
                     </div>
                     <div class="row mb-7">
@@ -218,8 +218,8 @@
                             <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div class="col fw-bold fs-6 text-end" 
-                            [ngClass]="{'text-muted': propertyAnalysis?.cashFlow == null, 'text-gray-900': propertyAnalysis?.cashFlow != null}">
-                            {{ (propertyAnalysis?.cashFlow | currency:'USD':'symbol':'1.0-0') || 'n/a' }}
+                            [ngClass]="{'text-muted': !propertyAnalysis?.cashFlow, 'text-gray-900': propertyAnalysis?.cashFlow}">
+                            {{ propertyAnalysis?.cashFlow !== null ? (propertyAnalysis?.cashFlow | currency:'USD':'symbol':'1.0-0') : 'n/a' }}
                         </div>
                     </div>
                 </div>
@@ -230,8 +230,8 @@
                             <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div class="col fw-bold fs-6 text-end" 
-                            [ngClass]="{'text-muted': propertyAnalysis?.cashOnCashReturn == null, 'text-gray-900': propertyAnalysis?.cashOnCashReturn != null}">
-                            {{ propertyAnalysis?.cashOnCashReturn ? propertyAnalysis?.cashOnCashReturn + '%' : 'n/a' }}
+                            [ngClass]="{'text-muted': !propertyAnalysis?.cashOnCashReturn, 'text-gray-900': propertyAnalysis?.cashOnCashReturn}">
+                            {{ propertyAnalysis?.cashOnCashReturn !== null ? (propertyAnalysis?.cashOnCashReturn + '%') : 'n/a' }}
                         </div>
                     </div>
                     <div class="row mb-7">
@@ -240,8 +240,8 @@
                             <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div class="col fw-bold fs-6 text-end" 
-                            [ngClass]="{'text-muted': propertyAnalysis?.capRate == null, 'text-gray-900': propertyAnalysis?.capRate != null}">
-                            {{ propertyAnalysis?.capRate ? propertyAnalysis?.capRate + '%' : 'n/a' }}
+                            [ngClass]="{'text-muted': !propertyAnalysis?.capRate, 'text-gray-900': propertyAnalysis?.capRate}">
+                            {{ propertyAnalysis?.capRate !== null ? (propertyAnalysis?.capRate + '%') : 'n/a' }}
                         </div>
                     </div>
                     <div class="row mb-7">
@@ -250,8 +250,8 @@
                             <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div class="col fw-bold fs-6 text-end" 
-                            [ngClass]="{'text-muted': propertyAnalysis?.netOperatingIncome == null, 'text-gray-900': propertyAnalysis?.netOperatingIncome != null}">
-                            {{ (propertyAnalysis?.netOperatingIncome | currency:'USD':'symbol':'1.0-0') || 'n/a' }}
+                            [ngClass]="{'text-muted': !propertyAnalysis?.netOperatingIncome, 'text-gray-900': propertyAnalysis?.netOperatingIncome}">
+                            {{ propertyAnalysis?.netOperatingIncome !== null ? (propertyAnalysis?.netOperatingIncome | currency:'USD':'symbol':'1.0-0') : 'n/a' }}
                         </div>
                     </div>
                     <div class="row mb-7">
@@ -260,8 +260,8 @@
                             <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div class="col fw-bold fs-6 text-end" 
-                            [ngClass]="{'text-muted': propertyAnalysis?.internalRateOfReturn == null, 'text-gray-900': propertyAnalysis?.internalRateOfReturn != null}">
-                            {{ propertyAnalysis?.internalRateOfReturn ? propertyAnalysis?.internalRateOfReturn + '%' : 'n/a' }}
+                            [ngClass]="{'text-muted': !propertyAnalysis?.internalRateOfReturn, 'text-gray-900': propertyAnalysis?.internalRateOfReturn}">
+                            {{ propertyAnalysis?.internalRateOfReturn !== null ? (propertyAnalysis?.internalRateOfReturn + '%') : 'n/a' }}
                         </div>
                     </div>
                     <div class="row mb-7">
@@ -270,8 +270,8 @@
                             <app-info-icon title="Purchase Price"></app-info-icon>
                         </div>
                         <div class="col fw-bold fs-6 text-end" 
-                            [ngClass]="{'text-muted': propertyAnalysis?.debtCoverageRatio == null, 'text-gray-900': propertyAnalysis?.debtCoverageRatio != null}">
-                            {{ propertyAnalysis?.debtCoverageRatio ? propertyAnalysis?.debtCoverageRatio + '%' : 'n/a' }}
+                            [ngClass]="{'text-muted': !propertyAnalysis?.debtCoverageRatio, 'text-gray-900': propertyAnalysis?.debtCoverageRatio}">
+                            {{ propertyAnalysis?.debtCoverageRatio !== null ? (propertyAnalysis?.debtCoverageRatio + '%') : 'n/a' }}
                         </div>
                     </div>
                 </div>
@@ -298,7 +298,7 @@
                         </div>
                         <div class="col fw-bold fs-6 text-end"
                             [ngClass]="{'text-muted': !propertyAnalysis?.mortgage, 'text-gray-900': propertyAnalysis?.mortgage}">
-                            {{ propertyAnalysis?.mortgage ? (propertyAnalysis?.mortgage | currency:'USD':'symbol':'1.0-0') : 'n/a' }}
+                            {{ propertyAnalysis?.mortgage !== null ? (propertyAnalysis?.mortgage | currency:'USD':'symbol':'1.0-0') : 'n/a' }}
                         </div>
                     </div>
                     <div class="row mb-7">
@@ -308,7 +308,7 @@
                         </div>
                         <div class="col fw-bold fs-6 text-end"
                             [ngClass]="{'text-muted': !propertyAnalysis?.propertyTaxes, 'text-gray-900': propertyAnalysis?.propertyTaxes}">
-                            {{ propertyAnalysis?.propertyTaxes ? (propertyAnalysis?.propertyTaxes | currency:'USD':'symbol':'1.0-0') : 'n/a' }}
+                            {{ propertyAnalysis?.propertyTaxes !== null ? (propertyAnalysis?.propertyTaxes | currency:'USD':'symbol':'1.0-0') : 'n/a' }}
                         </div>
                     </div>
                     <div class="row mb-7">
@@ -318,7 +318,7 @@
                         </div>
                         <div class="col fw-bold fs-6 text-end"
                             [ngClass]="{'text-muted': !propertyAnalysis?.insurance, 'text-gray-900': propertyAnalysis?.insurance}">
-                            {{ propertyAnalysis?.insurance ? (propertyAnalysis?.insurance | currency:'USD':'symbol':'1.0-0') : 'n/a' }}
+                            {{ propertyAnalysis?.insurance !== null ? (propertyAnalysis?.insurance | currency:'USD':'symbol':'1.0-0') : 'n/a' }}
                         </div>
                     </div>
                     <div class="row mb-7">
@@ -328,7 +328,7 @@
                         </div>
                         <div class="col fw-bold fs-6 text-end"
                             [ngClass]="{'text-muted': !propertyAnalysis?.vacancy, 'text-gray-900': propertyAnalysis?.vacancy}">
-                            {{ propertyAnalysis?.vacancy ? (propertyAnalysis?.vacancy | currency:'USD':'symbol':'1.0-0') : 'n/a' }}
+                            {{ propertyAnalysis?.vacancy !== null ? (propertyAnalysis?.vacancy | currency:'USD':'symbol':'1.0-0') : 'n/a' }}
                         </div>
                     </div>
 
@@ -341,7 +341,7 @@
                         </div>
                         <div class="col fw-bold fs-6 text-end"
                             [ngClass]="{'text-muted': !propertyAnalysis?.repairAndMaintenance, 'text-gray-900': propertyAnalysis?.repairAndMaintenance}">
-                            {{ propertyAnalysis?.repairAndMaintenance ? (propertyAnalysis?.repairAndMaintenance | currency:'USD':'symbol':'1.0-0') : 'n/a' }}
+                            {{ propertyAnalysis?.repairAndMaintenance !== null ? (propertyAnalysis?.repairAndMaintenance | currency:'USD':'symbol':'1.0-0') : 'n/a' }}
                         </div>
                     </div>
                     <div class="row mb-7">
@@ -351,7 +351,7 @@
                         </div>
                         <div class="col fw-bold fs-6 text-end"
                             [ngClass]="{'text-muted': !propertyAnalysis?.capitalExpenditure, 'text-gray-900': propertyAnalysis?.capitalExpenditure}">
-                            {{ propertyAnalysis?.capitalExpenditure ? (propertyAnalysis?.capitalExpenditure | currency:'USD':'symbol':'1.0-0') : 'n/a' }}
+                            {{ propertyAnalysis?.capitalExpenditure !== null ? (propertyAnalysis?.capitalExpenditure | currency:'USD':'symbol':'1.0-0') : 'n/a' }}
                         </div>
                     </div>
                     <div class="row mb-7">
@@ -361,7 +361,7 @@
                         </div>
                         <div class="col fw-bold fs-6 text-end"
                             [ngClass]="{'text-muted': !propertyAnalysis?.managementFees, 'text-gray-900': propertyAnalysis?.managementFees}">
-                            {{ propertyAnalysis?.managementFees ? (propertyAnalysis?.managementFees | currency:'USD':'symbol':'1.0-0') : 'n/a' }}
+                            {{ propertyAnalysis?.managementFees !== null ? (propertyAnalysis?.managementFees | currency:'USD':'symbol':'1.0-0') : 'n/a' }}
                         </div>
                     </div>
                     <div class="row mb-7">
@@ -371,7 +371,7 @@
                         </div>
                         <div class="col fw-bold fs-6 text-end"
                             [ngClass]="{'text-muted': !propertyAnalysis?.otherExpenses, 'text-gray-900': propertyAnalysis?.otherExpenses}">
-                            {{ propertyAnalysis?.otherExpenses ? (propertyAnalysis?.otherExpenses | currency:'USD':'symbol':'1.0-0') : 'n/a' }}
+                            {{ propertyAnalysis?.otherExpenses !== null ? (propertyAnalysis?.otherExpenses | currency:'USD':'symbol':'1.0-0') : 'n/a' }}
                         </div>
                     </div>
                 </div>
@@ -386,7 +386,7 @@
                 </div>
                 <div class="col fw-bolder fs-6 text-end"
                     [ngClass]="{'text-muted': !propertyAnalysis?.totalExpenses, 'text-primary': propertyAnalysis?.totalExpenses}">
-                    {{ propertyAnalysis?.totalExpenses ? (propertyAnalysis?.totalExpenses | currency:'USD':'symbol':'1.0-0') : 'n/a' }}
+                    {{ propertyAnalysis?.totalExpenses !== null ? (propertyAnalysis?.totalExpenses | currency:'USD':'symbol':'1.0-0') : 'n/a' }}
                 </div>
             </div>
         </div>
