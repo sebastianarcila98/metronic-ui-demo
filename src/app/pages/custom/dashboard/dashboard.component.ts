@@ -6,6 +6,7 @@ import { PropertyAnalysis } from 'src/app/models/PropertyAnalysis';
 import { PropertyCriteria } from 'src/app/models/PropertyCriteria';
 import { PurchaseCriteria } from 'src/app/models/PurchaseCriteria';
 import { User } from 'src/app/models/User';
+import { AuthService } from 'src/app/modules/auth';
 import { PropertyAnalysisService } from 'src/app/services/property-analysis.service';
 import { UserService } from 'src/app/services/user.service';
 import { UtilityService } from 'src/app/services/utility.service';
@@ -16,6 +17,7 @@ import { UtilityService } from 'src/app/services/utility.service';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
+  id: string | undefined; 
   // modalConfig: ModalConfig = {
   //   modalTitle: 'Modal title',
   //   dismissButtonLabel: 'Submit',
@@ -136,13 +138,15 @@ export class DashboardComponent implements OnInit {
   constructor(
     public userService: UserService,
     private utilityService: UtilityService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private authService: AuthService
   ) {
-    console.log('DashboardComponent')
+    this.id = this.authService.currentUserValue?.id;
+    console.log('DashboardComponent', this.authService.currentUserValue?.id);
   }
 
   ngOnInit() {
-    this.userService.getUserDashboardInfo('ED8FCF47-66EC-4BED-9ADE-44602830AA65').subscribe({
+    this.userService.getUserDashboardInfo(this.id!).subscribe({
       next: (data) => {
         console.log('getUserDashboardInfo response: ', data);
         this.userService.updateUser(data);

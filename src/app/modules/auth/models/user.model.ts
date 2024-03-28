@@ -1,8 +1,8 @@
-import { AuthModel } from './auth.model';
+import { UserLogin } from './auth.model';
 import { AddressModel } from './address.model';
 import { SocialNetworksModel } from './social-networks.model';
 
-export class UserModel extends AuthModel {
+export class UserModel extends UserLogin {
   id: number;
   username: string;
   password: string;

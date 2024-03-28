@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { UserModel } from '../../../models/user.model';
-import { AuthModel } from '../../../models/auth.model';
+import { UserLogin } from '../../../models/auth.model';
 import { UsersTable } from '../../../../../_fake/users.table';
 import { environment } from '../../../../../../environments/environment';
 
@@ -39,7 +39,7 @@ export class AuthHTTPService {
           return notFoundError;
         }
 
-        const auth = new AuthModel();
+        const auth = new UserLogin();
         auth.authToken = user.authToken;
         auth.refreshToken = user.refreshToken;
         auth.expiresIn = new Date(Date.now() + 100 * 24 * 60 * 60 * 1000);

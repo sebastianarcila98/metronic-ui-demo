@@ -22,11 +22,11 @@ export class UtilityService {
     }
   }
 
-  showError() {
+  showError(errorMessage?: string) {
     Swal.fire({
       icon: "error",
       title: "<h1>Oops...</h1>",
-      text: "Something went wrong! Please try again.",
+      text: errorMessage ?? "Something went wrong! Please try again.",
       showCloseButton: true,
       showConfirmButton: false,
       footer: '<b><a href="#">Contact support</a></b>'

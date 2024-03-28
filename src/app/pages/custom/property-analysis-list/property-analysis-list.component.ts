@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PropertyAnalysis } from 'src/app/models/PropertyAnalysis';
+import { AuthService } from 'src/app/modules/auth';
 import { PropertyAnalysisService } from 'src/app/services/property-analysis.service';
 import { UtilityService } from 'src/app/services/utility.service';
 
@@ -12,6 +13,7 @@ import { UtilityService } from 'src/app/services/utility.service';
 export class PropertyAnalysisListComponent implements OnInit {
   propertyAnalyses: PropertyAnalysis[];
   isLoading: boolean;
+  id: string | undefined;
 
   // propertyAnalysisExample: PropertyAnalysis = {
   //   id: "1",
@@ -54,14 +56,16 @@ export class PropertyAnalysisListComponent implements OnInit {
     private router: Router,
     private propertyAnalysisService: PropertyAnalysisService,
     private utilityService: UtilityService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private authService: AuthService
   ) {
     console.log('ProrpertyListComponent');
+    this.id = this.authService.currentUserValue?.id;
   }
   
   ngOnInit(): void {
     this.isLoading = true;
-    this.propertyAnalysisService.getAllPropertiesAnalysis('ED8FCF47-66EC-4BED-9ADE-44602830AA65').subscribe({
+    this.propertyAnalysisService.getAllPropertiesAnalysis(this.id!).subscribe({
       next: (data) => {
         console.log('getAllPropertiesAnalysis response: ', data);
         this.propertyAnalyses = data;

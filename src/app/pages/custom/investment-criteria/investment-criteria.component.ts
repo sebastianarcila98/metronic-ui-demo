@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { InvestmentCriteria } from 'src/app/models/InvestmentCriteria';
+import { AuthService } from 'src/app/modules/auth';
 import { InvestmentCriteriaService } from 'src/app/services/investment-criteria.service';
 import { UtilityService } from 'src/app/services/utility.service';
 
@@ -24,6 +25,7 @@ export class InvestmentCriteriaComponent implements OnInit {
   originalAnalysisCriteriaData: any;
   originalPurchaseCriteriaData: any;
   originalPropertyCriteriaData: any;
+  id: string | undefined;
 
 
   constructor(
@@ -32,9 +34,11 @@ export class InvestmentCriteriaComponent implements OnInit {
     private investmentCriteriaService: InvestmentCriteriaService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private authService: AuthService
   ) {
     console.log('InvestmentCriteriaComponent');
+    this.id = this.authService.currentUserValue?.id;
     this.activatedRoute.queryParams.subscribe(params => {
       if (params['edit'] === 'true') {
         this.isEditing = true;
@@ -48,7 +52,7 @@ export class InvestmentCriteriaComponent implements OnInit {
   ngOnInit() {
     console.log('investmentCriteria: ', this.investmentCriteria)
     if (this.investmentCriteria == null || this.investmentCriteria == undefined) {
-      this.investmentCriteriaService.getInvestmentCriteria('ED8FCF47-66EC-4BED-9ADE-44602830AA65').subscribe({
+      this.investmentCriteriaService.getInvestmentCriteria(this.id!).subscribe({
         next: (data) => {
           this.investmentCriteriaId = data.id;
           this.analysisCriteriaForm.patchValue(data.analysisCriteria);

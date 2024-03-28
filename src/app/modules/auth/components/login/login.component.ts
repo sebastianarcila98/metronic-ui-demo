@@ -2,9 +2,9 @@ import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription, Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
-import { UserModel } from '../../models/user.model';
 import { AuthService } from '../../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class LoginComponent implements OnInit, OnDestroy {
   // KeenThemes mock, change it to:
   defaultAuth: any = {
-    email: 'admin@demo.com',
+    email: 'email@demo.com',
     password: 'demo',
   };
   loginForm: FormGroup;
@@ -51,18 +51,25 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   initForm() {
+    // Retrieve the stored email and password
+    const storedEmail = localStorage.getItem('email');
+    console.log('Stored email: ' + storedEmail);
+  
+    // Use the stored email and password if they exist, otherwise use the default email and password
+    const email = storedEmail ? storedEmail : null;
+  
     this.loginForm = this.fb.group({
       email: [
-        this.defaultAuth.email,
+        email,
         Validators.compose([
           Validators.required,
           Validators.email,
           Validators.minLength(3),
-          Validators.maxLength(320), // https://stackoverflow.com/questions/386294/what-is-the-maximum-length-of-a-valid-email-address
+          Validators.maxLength(320),
         ]),
       ],
       password: [
-        this.defaultAuth.password,
+        null,
         Validators.compose([
           Validators.required,
           Validators.minLength(3),
@@ -77,8 +84,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     const loginSubscr = this.authService
       .login(this.f.email.value, this.f.password.value)
       .pipe(first())
-      .subscribe((user: UserModel | undefined) => {
+      .subscribe((user: User | undefined) => {
         if (user) {
+          localStorage.setItem('email', this.f.email.value);
           this.router.navigate([this.returnUrl]);
         } else {
           this.hasError = true;

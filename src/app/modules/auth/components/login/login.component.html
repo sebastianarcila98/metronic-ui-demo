@@ -83,9 +83,9 @@
   <!--begin::Form group-->
   <div class="fv-row mb-8">
     <label class="form-label fs-6 fw-bolder text-gray-900">Email</label>
-    <input class="form-control bg-transparent" type="email" name="email" formControlName="email" autocomplete="off"
+    <input class="form-control bg-transparent" type="email" name="email" formControlName="email" autocomplete="off" placeholder="example@email.com"
       [ngClass]="{
-        'is-invalid': loginForm.controls['email'].invalid,
+        'is-invalid': loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched),
         'is-valid': loginForm.controls['email'].valid
       }" />
     <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
@@ -117,8 +117,8 @@
     <label class="form-label fw-bolder text-gray-900 fs-6 mb-0">Password</label>
 
     <input class="form-control bg-transparent" type="password" name="password" autocomplete="off"
-      formControlName="password" [ngClass]="{
-        'is-invalid': loginForm.controls['password'].invalid,
+      formControlName="password" placeholder="Enter your password" [ngClass]="{
+        'is-invalid': loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched),
         'is-valid': loginForm.controls['password'].valid
       }" />
     <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
